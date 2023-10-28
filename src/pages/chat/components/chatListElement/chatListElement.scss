@@ -1,0 +1,113 @@
+@import "/utils/styles/variables.scss";
+
+.chat-list-element {
+  position: relative;
+  padding: 12px 0;
+
+  width: 100%;
+  height: 47px;
+  display: flex;
+  flex-direction: row;
+
+  cursor: pointer;
+
+  &:first-child::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+
+    border-top: 1px solid $GRAY_COLOR_2;
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+
+    border-top: 1px solid $GRAY_COLOR_2;
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: auto 193px auto;
+  }
+
+  &__avatar-wrapper {
+    width: 47px;
+    height: 47px;
+  }
+
+  &__description {
+    position: relative;
+    width: 193px;
+    height: 100%;
+
+    gap: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__user-name {
+    width: 100%;
+    margin: 0;
+
+    color: $BLACK_COLOR_1;
+
+    @include text1Medium;
+  }
+
+  &__user-message {
+    width: 100%;
+    margin: 0;
+
+    color: $GRAY_COLOR_1;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include extraText1Regular;
+  }
+
+  &__message-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    width: 20px;
+    height: 20px;
+
+    color: $WHITE_COLOR_1;
+    background-color: $BLUE_COLOR_1;
+    border-radius: 50%;
+
+    @include text1Link;
+  }
+
+  &__info {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__date {
+    margin: 0;
+
+    color: $GRAY_COLOR_1;
+
+    @include text1Badge;
+  }
+}

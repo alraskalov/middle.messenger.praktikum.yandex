@@ -1,0 +1,11 @@
+@import "/utils/styles/variables.scss";
+
+.avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 65%;
+  background-color: $GRAY_COLOR_3;
+  object-fit: scale-down;
+}

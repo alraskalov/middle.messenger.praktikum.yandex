@@ -1,0 +1,10 @@
+@import "/utils/styles/variables.scss";
+
+.back-sidebar {
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid $GRAY_COLOR_2;
+  background: $WHITE_COLOR_2;
+}

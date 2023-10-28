@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/utils/styles/style.scss">
+
+    <link rel="stylesheet" href="/pages/chat/components/chatList/chatList.scss">
+    <link rel="stylesheet" href="/pages/chat/components/chatListElement/chatListElement.scss">
+    <link rel="stylesheet" href="/pages/chat/components/searchInput/searchInput.scss">
+    <link rel="stylesheet" href="/pages/chat/layouts/chatSidebar/chatSidebar.scss">
+    <link rel="stylesheet" href="/pages/chat/layouts/chatScreen/chatScreen.scss">
+    <link rel="stylesheet" href="/pages/chat/index.scss">
+    <link rel="stylesheet" href="/components/avatar/avatar.scss">
+
+    <link rel="stylesheet" href="/components/safetyPinButton/safetyPinButton.scss">
+    <link rel="stylesheet" href="/components/settingsButton/settingsButton.scss">
+    <link rel="stylesheet" href="/components/submitButton/submitButton.scss">
+
+    <title>Messenger | Chat</title>
+</head>
+<body>
+    <div class="container">
+        {{> chatSidebar/chatSidebar }}
+        <main class="main">
+            {{> chatScreen/chatScreen user-name="Вадим" }}
+        </main>
+    </div>
+</body>
+</html>

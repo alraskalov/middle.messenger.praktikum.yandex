@@ -1,0 +1,45 @@
+@import "/utils/styles/variables.scss";
+
+.label {
+  width: 100%;
+  color: $GRAY_COLOR_1;
+
+  &__text {
+    margin: 0;
+
+    @include text2Badge;
+  }
+
+  &__error {
+    margin: 0;
+
+    color: $RED_COLOR_1;
+
+    @include text2Badge;
+  }
+}
+
+.input {
+  width: 100%;
+
+  padding: 0 0 7px;
+  margin: 8px 0 7px;
+
+  border: none;
+  border-bottom: 1px solid $BLUE_COLOR_1;
+
+  background-image: none;
+  background-color: transparent;
+
+  box-shadow: none;
+
+  color: $BLACK_COLOR_1;
+  outline: none;
+
+
+  @include text1Regular;
+
+  &::placeholder {
+    color: $GRAY_COLOR_1;
+  }
+}

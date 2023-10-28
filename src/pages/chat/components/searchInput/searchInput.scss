@@ -1,0 +1,44 @@
+@import "/utils/styles/variables.scss";
+
+.search-input {
+  position: relative;
+  padding: 6px 25px;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 32px;
+
+  color: $GRAY_COLOR_1;
+  text-align: center;
+
+  border-radius: 5px;
+  background-color: $GRAY_COLOR_3;
+
+  transition: .5s;
+
+  @include extraText3Regular;
+
+  &:not(:focus)::placeholder {
+    text-align: center;
+    color: $GRAY_COLOR_1;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+
+  &:not(:focus) {
+    background-image: url("/assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-position: 40% 50%;
+  }
+
+  &:focus {
+    background-image: url("/assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+  }
+}
