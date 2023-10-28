@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "tsc && vite build && vite preview"
+    "start": "tsc && vite build && vite preview",
+    "build": "tsc && vite build"
   },
   "devDependencies": {
     "sass": "^1.69.4",
