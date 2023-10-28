@@ -1,7 +1,7 @@
 # Проект Messenger - веб-мессенджер
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ddff3914-85d5-43ef-a117-80776f08789d/deploy-status)](https://app.netlify.com/sites/snazzy-concha-c6cf54/deploys)
 
-Ссылка на проект: **[Messenger]()**
+Ссылка на проект: **[Messenger](https://snazzy-concha-c6cf54.netlify.app/)**
 
 ## 🧰 Экосистема
 
@@ -34,14 +34,14 @@
 
 ## Список экранов
 
-- **[Log In]()**
-- **[Sign up]()**
-- **[View Profile]()**
-- **[Edit Data Profile]()**
-- **[Edit Password Profile]()**
-- **[Error 404]()**
-- **[Error 500]()**
-- **[Chat]()**
+- **[Log In](https://snazzy-concha-c6cf54.netlify.app/pages/auth/modules/login/)**
+- **[Sign up](https://snazzy-concha-c6cf54.netlify.app/pages/auth/modules/signup/)**
+- **[View Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/viewprofile/)**
+- **[Edit Data Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/editdataprofile/)**
+- **[Edit Password Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/editpasswordprofile/)**
+- **[Error 404](https://snazzy-concha-c6cf54.netlify.app/pages/error/modules/404/)**
+- **[Error 500](https://snazzy-concha-c6cf54.netlify.app/pages/error/modules/500/)**
+- **[Chat](https://snazzy-concha-c6cf54.netlify.app/pages/chat/)**
 
 ## 👨🏻‍💻 Развертывание проекта:
 
@@ -49,3 +49,4 @@
 - установить зависимости `npm i`;
 - `npm run dev` - сборка и запуск проекта в режиме разработки
 - `npm run start` - сборка и запуск стабильной версии проекта
+- `npm run dev` - сборка стабильной версии проекта
