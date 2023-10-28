@@ -1,4 +1,5 @@
 # Проект Messenger - веб-мессенджер
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ddff3914-85d5-43ef-a117-80776f08789d/deploy-status)](https://app.netlify.com/sites/snazzy-concha-c6cf54/deploys)
 
 Ссылка на проект: **[Messenger]()**
 
