@@ -1,0 +1,36 @@
+@import "/utils/styles/variables.scss";
+
+.avatar-wrapper {
+  width: 130px;
+  height: 130px;
+  margin-bottom: 21px;
+
+  position: relative;
+
+  &_edit {
+    &:hover::after {
+      content: "Поменять \A аватар";
+      top: 0;
+      left: 0;
+      clear: right;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: 100%;
+
+      border-radius: 65%;
+      background-color: $BLACK_COLOR_2;
+      color: $WHITE_COLOR_1;
+      opacity: 0.5;
+      cursor: pointer;
+
+      white-space: pre-wrap;
+      text-align: center;
+
+      @include text2Regular;
+    }
+  }
+}

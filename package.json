@@ -1,0 +1,23 @@
+{
+  "name": "messenger",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "engines": {
+    "node": ">=14.18.0 || >=16.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "tsc && vite build && vite preview",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "sass": "^1.69.4",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "@types/node": "^20.8.7",
+    "vite-plugin-handlebars": "^1.6.0"
+  }
+}

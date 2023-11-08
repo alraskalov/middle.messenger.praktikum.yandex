@@ -1,0 +1,51 @@
+@import "/utils/styles/variables.scss";
+
+.chat-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 310px;
+  height: 100%;
+
+  padding: 21px 10px 0;
+  gap: 14px;
+
+  border-right: 1px solid $GRAY_COLOR_2;
+  border-left: 1px solid $GRAY_COLOR_2;
+  box-sizing: border-box;
+
+  background-color: $WHITE_COLOR_2;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 23px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    color: $GRAY_COLOR_1;
+
+    @include extraText3Regular;
+  }
+
+  &__chat-list {
+    height: 100vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

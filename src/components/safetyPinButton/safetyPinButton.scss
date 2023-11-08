@@ -1,0 +1,14 @@
+.safety-pin-button {
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+  margin: 0;
+  border: none;
+
+  background-image: url("/assets/icons/pin.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+  cursor: pointer;
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/utils/styles/style.scss">
+
+    <link rel="stylesheet" href="/components/backButton/backButton.scss">
+    <link rel="stylesheet" href="/components/avatar/avatar.scss">
+    <link rel="stylesheet" href="/pages/profile/components/backSidebar/backSidebar.scss">
+    <link rel="stylesheet" href="/pages/profile/components/avatarWrapper/avatarWrapper.scss">
+    <link rel="stylesheet" href="/pages/profile/components/dividingLine/dividingLine.scss">
+    <link rel="stylesheet" href="/pages/profile/components/profileInput/profileInput.scss">
+    <link rel="stylesheet" href="/pages/profile/components/profileForm/profileForm.scss">
+    <link rel="stylesheet" href="/components/button/button.scss">
+
+
+    <link rel="stylesheet" href="/pages/profile/layouts/sidebar/sidebar.scss">
+
+    <title>Messenger | Profile</title>
+</head>
+<body>
+<div class="container container_column">
+    {{#> sidebar/sidebar content-class="content_height_507" }}
+        {{#> avatarWrapper/avatarWrapper }}
+            {{> avatar/avatar  avatar-src="/assets/icons/avatar.svg" }}
+        {{/ avatarWrapper/avatarWrapper }}
+
+        {{#> profileForm/profileForm }}
+            {{> profileInput/profileInput input-name="oldPassword" input-type="password" label-text="Старый пароль" input-value="123123" }}
+            {{> dividingLine/dividingLine }}
+
+            {{> profileInput/profileInput input-name="newPassword" input-type="password" label-text="Новый пароль" input-value="123123" }}
+            {{> dividingLine/dividingLine }}
+
+            {{> profileInput/profileInput input-name="repeatPassword" input-type="password" label-text="Повторите новый пароль" input-value="123123" }}
+        {{/ profileForm/profileForm}}
+
+        {{> button/button button-text="Сохранить" }}
+    {{/ sidebar/sidebar}}
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+@import "/utils/styles/variables.scss";
+
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 40px 30px 30px 30px;
+
+  max-width: 340px;
+  width: 100%;
+  min-height: 257px;
+
+  border-radius: 12px;
+  background: $WHITE_COLOR_1;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
+}

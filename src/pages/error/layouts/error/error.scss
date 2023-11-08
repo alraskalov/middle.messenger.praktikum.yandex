@@ -1,0 +1,27 @@
+@import "/utils/styles/variables.scss";
+
+.error {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 69px;
+
+  &__description {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__title {
+    margin: 0;
+
+    @include title1Regular;
+  }
+
+  &__subtitle {
+    margin: 0;
+
+    @include title2Regular;
+  }
+}
