@@ -1,5 +1,5 @@
-@import "./fonts.scss";
-@import "./variables.scss";
+@import "./fonts";
+@import "./variables";
 
 body {
   margin: 0;
@@ -10,7 +10,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: row;
-
   max-width: 1280px;
   width: 100%;
   height: 100vh;

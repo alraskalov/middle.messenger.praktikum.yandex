@@ -1,5 +1,7 @@
-import {defineConfig, Plugin} from 'vite'
+import {defineConfig} from 'vite'
 import handlebars from "vite-plugin-handlebars";
+
+import eslint from "vite-plugin-eslint";
 import {resolve} from "path";
 
 import inputWrapper from "./src/pages/auth/layouts/inputWrapper/inputWrapper";
@@ -29,7 +31,8 @@ export default defineConfig({
             context: {
                 global: "global",
             }
-        }) as unknown as Plugin,
+        }),
+        eslint(),
     ],
 
     build: {

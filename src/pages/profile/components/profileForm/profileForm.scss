@@ -1,4 +1,4 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .profile-form {
   width: 100%;
@@ -7,10 +7,9 @@
 
   &__title {
     margin-bottom: 60px;
-    color: $BLACK_COLOR_1;
-
+    color: $black-color-1;
     text-align: center;
 
-    @include title3Regular;
+    @include title3-regular;
   }
 }

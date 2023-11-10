@@ -1,88 +1,88 @@
-$BLUE_COLOR_1: #3369F3;
-$BLUE_COLOR_2: #E4EDFD;
-$GRAY_COLOR_1: #999999;
-$GRAY_COLOR_2: #EAEAEA;
-$GRAY_COLOR_3: #EFEFEF;
-$BLACK_COLOR_1: #1E1E1E;
-$BLACK_COLOR_2: #000000;
-$RED_COLOR_1: #FF2F2F;
-$WHITE_COLOR_1: #FFFFFF;
-$WHITE_COLOR_2: #FBFBFB;
+$blue-color-1: #3369F3;
+$blue-color-2: #E4EDFD;
+$gray-color-1: #999;
+$gray-color-2: #EAEAEA;
+$gray-color-3: #EFEFEF;
+$black-color-1: #1E1E1E;
+$black-color-2: #000;
+$red-color-1: #FF2F2F;
+$white-color-1: #FFF;
+$white-color-2: #FBFBFB;
 
-@mixin title1Regular {
+@mixin title1-regular {
   font-size: 40px;
   font-weight: 500;
   line-height: 40px;
 }
 
-@mixin title2Regular {
+@mixin title2-regular {
   font-size: 20px;
   font-weight: 500;
   line-height: 20px;
 }
 
-@mixin title3Regular {
+@mixin title3-regular {
   font-size: 16px;
   font-weight: 600;
   line-height: 16px;
 }
 
-@mixin text1Regular {
+@mixin text1-regular {
   font-size: 13px;
   font-weight: 500;
   line-height: 13px;
 }
 
-@mixin text2Regular {
+@mixin text2-regular {
   font-size: 13px;
   font-weight: 500;
   line-height: 14px;
 }
 
-@mixin text1Medium {
+@mixin text1-medium {
   font-size: 13px;
   font-weight: 600;
   line-height: 13px;
 }
 
-@mixin extraText1Regular {
+@mixin extra-text1-regular {
   font-size: 12px;
   font-weight: 500;
   line-height: 15px;
 }
 
-@mixin extraText2Regular {
+@mixin extra-text2-regular {
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
 }
 
-@mixin extraText3Regular {
+@mixin extra-text3-regular {
   font-size: 12px;
   font-weight: 500;
   line-height: 12px;
 }
 
-@mixin text1Link {
+@mixin text1-link {
   font-size: 11px;
   font-weight: 500;
   line-height: 12px;
 }
 
 
-@mixin text2Link {
+@mixin text2-link {
   font-size: 11px;
   font-weight: 500;
   line-height: 11px;
 }
 
-@mixin text1Badge {
+@mixin text1-badge {
   font-size: 9px;
   font-weight: 500;
   line-height: 13px;
 }
 
-@mixin text2Badge {
+@mixin text2-badge {
   font-size: 9px;
   font-weight: 500;
   line-height: 9px;

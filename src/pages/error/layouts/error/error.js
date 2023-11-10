@@ -1,6 +1,4 @@
-import {HelperOptions} from "handlebars"
-
-export default function error(this: object, {fn, hash}: HelperOptions): string {
+export default function error({fn, hash}) {
     return `
         <div class="error">
             <div class="error__description">

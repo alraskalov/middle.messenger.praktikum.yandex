@@ -1,4 +1,4 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .profile-label {
   display: flex;
@@ -8,10 +8,9 @@
   &__text {
     margin: 0;
     padding: 0;
+    color: $black-color-1;
 
-    color: $BLACK_COLOR_1;
-
-    @include text1Regular;
+    @include text1-regular;
   }
 }
 
@@ -22,8 +21,7 @@
   outline: none;
   background-color: transparent;
   text-align: right;
+  color: $gray-color-1;
 
-  color: $GRAY_COLOR_1;
-
-  @include text1Regular;
+  @include text1-regular;
 }

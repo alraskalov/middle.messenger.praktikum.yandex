@@ -1,19 +1,19 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .link {
-  color: $BLUE_COLOR_1;
+  color: $blue-color-1;
   text-decoration: none;
 
 
   &_xs {
-    @include text2Link;
+    @include text2-link;
   }
 
   &_regular {
-    @include text1Regular;
+    @include text1-regular;
   }
 
   &_red {
-    color: $RED_COLOR_1;
+    color: $red-color-1;
   }
 }

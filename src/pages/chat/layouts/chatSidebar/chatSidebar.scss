@@ -1,20 +1,16 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .chat-sidebar {
   display: flex;
   flex-direction: column;
-
   width: 310px;
   height: 100%;
-
   padding: 21px 10px 0;
   gap: 14px;
-
-  border-right: 1px solid $GRAY_COLOR_2;
-  border-left: 1px solid $GRAY_COLOR_2;
+  border-right: 1px solid $gray-color-2;
+  border-left: 1px solid $gray-color-2;
   box-sizing: border-box;
-
-  background-color: $WHITE_COLOR_2;
+  background-color: $white-color-2;
 
   &__header {
     display: flex;
@@ -28,16 +24,14 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    
     margin: 0;
     padding: 0;
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: $gray-color-1;
 
-    color: $GRAY_COLOR_1;
-
-    @include extraText3Regular;
+    @include extra-text3-regular;
   }
 
   &__chat-list {

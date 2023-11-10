@@ -1,14 +1,12 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .chat-list-element {
   position: relative;
   padding: 12px 0;
-
   width: 100%;
   height: 47px;
   display: flex;
   flex-direction: row;
-
   cursor: pointer;
 
   &:first-child::after {
@@ -17,8 +15,7 @@
     left: 0;
     content: "";
     width: 100%;
-
-    border-top: 1px solid $GRAY_COLOR_2;
+    border-top: 1px solid $gray-color-2;
   }
 
   &::before {
@@ -27,14 +24,12 @@
     left: 0;
     content: "";
     width: 100%;
-
-    border-top: 1px solid $GRAY_COLOR_2;
+    border-top: 1px solid $gray-color-2;
   }
 
   &__wrapper {
     width: 100%;
     height: 100%;
-
     display: grid;
     grid-template-columns: auto 193px auto;
   }
@@ -48,9 +43,7 @@
     position: relative;
     width: 193px;
     height: 100%;
-
     gap: 4px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -59,23 +52,20 @@
   &__user-name {
     width: 100%;
     margin: 0;
+    color: $black-color-1;
 
-    color: $BLACK_COLOR_1;
-
-    @include text1Medium;
+    @include text1-medium;
   }
 
   &__user-message {
     width: 100%;
     margin: 0;
-
-    color: $GRAY_COLOR_1;
-
+    color: $gray-color-1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-    @include extraText1Regular;
+    @include extra-text1-regular;
   }
 
   &__message-count {
@@ -83,20 +73,17 @@
     align-items: center;
     justify-content: center;
     position: relative;
-
     width: 20px;
     height: 20px;
-
-    color: $WHITE_COLOR_1;
-    background-color: $BLUE_COLOR_1;
+    color: $white-color-1;
+    background-color: $blue-color-1;
     border-radius: 50%;
 
-    @include text1Link;
+    @include text1-link;
   }
 
   &__info {
     height: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -105,9 +92,8 @@
 
   &__date {
     margin: 0;
+    color: $gray-color-1;
 
-    color: $GRAY_COLOR_1;
-
-    @include text1Badge;
+    @include text1-badge;
   }
 }
