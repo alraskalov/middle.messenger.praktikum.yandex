@@ -5,46 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/utils/styles/style.scss">
 
-    <link rel="stylesheet" href="/components/input/input.scss">
-    <link rel="stylesheet" href="/components/button/button.scss">
-    <link rel="stylesheet" href="/components/link/link.scss">
-    <link rel="stylesheet" href="/components/popup/popup.scss">
-
-    <link rel="stylesheet" href="/pages/auth/components/form/form.scss">
-    <link rel="stylesheet" href="/pages/auth/layouts/inputWrapper/inputWrapper.scss">
-    <link rel="stylesheet" href="/pages/auth/layouts/buttonsBlockWrapper/buttonsBlockWrapper.scss">
-
     <title>Messenger | Sign Up</title>
 </head>
 <body>
     <main>
         <div class="container container_column container_center">
-            {{#> popup/popup}}
-                {{#> form/form form-title="Регистрация" form-class="auth-form_signup"}}
-                    {{# inputWrapper}}
-                        {{> input/input input-name="email" input-type="email" input-placeholder="Почта" label-text="Почта" label-error="" }}
 
-                        {{> input/input input-name="login" input-type="text" input-placeholder="Логин" label-text="Логин" label-error="" }}
-
-                        {{> input/input input-name="first_name" input-type="text" input-placeholder="Имя" label-text="Имя" label-error="" }}
-
-                        {{> input/input input-name="second_name" input-type="text" input-placeholder="Фамилия" label-text="Фамилия" label-error="" }}
-
-                        {{> input/input input-name="phone" input-type="tel" input-placeholder="Телефон" label-text="Телефон" label-error="" }}
-
-                        {{> input/input input-name="password" input-type="password" input-placeholder="Пароль" label-text="Пароль" label-error="" }}
-
-                        {{> input/input input-name="repeatPassword" input-type="password" input-placeholder="Пароль (ещё раз)" label-text="Пароль (ещё раз)" label-error="Пароли не совпадают" }}
-                    {{/inputWrapper}}
-
-                    {{# buttonsBlockWrapper}}
-                        {{> button/button button-text="Зарегистрироваться" }}
-
-                        {{> link/link link-class="link_xs" link-text="Войти" link-href="/pages/auth/modules/login/index.html" }}
-                    {{/buttonsBlockWrapper}}
-                {{/ form/form}}
-            {{/ popup/popup}}
         </div>
     </main>
+    <script src="./index.ts" type="module"></script>
 </body>
 </html>

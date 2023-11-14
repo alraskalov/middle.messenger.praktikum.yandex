@@ -4,16 +4,15 @@ module.exports = {
         "es2021": true
     },
     "extends": [
-        "airbnb",
+        'airbnb',
+        'airbnb-typescript'
     ],
     "overrides": [
         {
             "env": {
                 "node": true
             },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
+            "files": ['./**/*.{ts,tsx}'],
             "parserOptions": {
                 "sourceType": "script"
             }
@@ -22,6 +21,16 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module",
+        "project": ['./tsconfig.eslint.json'],
     },
-    "rules": {}
+    "rules": {
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "no-param-reassign": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "consistent-return": "off",
+        "@typescript-eslint/default-param-last": "off",
+        "no-console": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
+    }
 }
