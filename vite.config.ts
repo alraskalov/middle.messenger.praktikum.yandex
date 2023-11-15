@@ -24,6 +24,9 @@ export default defineConfig({
             },
         }) as unknown as Plugin,
     ],
+    preview: {
+      port: 3000,
+    },
     publicDir: resolve(__dirname, 'public'),
     build: {
         outDir: resolve(__dirname, 'dist'),
