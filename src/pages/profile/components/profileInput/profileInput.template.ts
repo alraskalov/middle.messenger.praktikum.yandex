@@ -1,15 +1,19 @@
 const template = `
-<p class="profile-label__text">{{ label-text }}</p>
-<input class="profile-input"
-       name="{{ input-name }}"
-       type="{{ input-type }}"
-       value="{{ input-value }}"
-       placeholder="{{ input-placeholder }}"
+<div class="profile-label__wrapper">
+    <p class="profile-label__text">{{ labelText }}</p>
+    <input class="profile-input"
+           name="{{ inputName }}"
+           type="{{ inputType }}"
+           value="{{ inputValue }}"
+           placeholder="{{ inputPlaceholder }}"
+           
+           {{#if inputDisabled}}
+            disabled
+           {{/if}}
+           >
+</div>
 
-       {{#if input-disabled}}
-        disabled
-       {{/if}}
-       >
+<p class="profile-label__error">{{error}}</p>
 `;
 
 export default template;

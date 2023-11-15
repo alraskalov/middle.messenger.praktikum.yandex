@@ -1,4 +1,4 @@
-import Handlebars from 'handlebars/dist/handlebars';
+import Handlebars from 'handlebars';
 import EventBus from '../EventBus/EventBus';
 import randomString from './utils';
 import { Meta, Props } from './types';
@@ -25,7 +25,7 @@ export default class Block {
 
   _meta: Meta;
 
-  _eventBus: EventBus<{ [name: string]: unknown[] }>;
+  _eventBus: EventBus<{ [name: string]: Props[] }>;
 
   _setUpdate = false;
 
@@ -37,6 +37,7 @@ export default class Block {
     this._children = this._makePropsProxy(children);
     this._lists = this._makePropsProxy(lists);
     this._props = this._makePropsProxy({ ...props, _id: this._id });
+    this._element = this.createDocumentElement(tag);
     this._meta = {
       tag,
       props,
@@ -59,7 +60,7 @@ export default class Block {
   }
 
   private createDocumentElement(tag: string): HTMLElement {
-    const element: HTMLElement = document.createElement(tag);
+    const element: HTMLElement = document.createElement(tag) as HTMLElement;
 
     if (this._props.settings?.withInternalID) {
       element.setAttribute('data-id', this._id);
@@ -104,9 +105,9 @@ export default class Block {
   }
 
   getChildren(propsAndChildren: Props) {
-    const children = {};
-    const props = {};
-    const lists = {};
+    const children = {} as Props;
+    const props = {} as Props;
+    const lists = {} as Props;
 
     Object.keys(propsAndChildren).forEach((key) => {
       if (propsAndChildren[key] instanceof Block) {
@@ -122,7 +123,7 @@ export default class Block {
   }
 
   compile(template: string, props: Props) {
-    if (typeof props === 'undefined') {
+    if (typeof (props) === 'undefined') {
       props = this._props;
     }
 
@@ -131,7 +132,8 @@ export default class Block {
     Object.entries(this._children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
     });
-    Object.entries(this._lists).forEach(([key, child]) => {
+
+    Object.entries(this._lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="list-virtual-${key}"></div>`;
     });
 
@@ -185,15 +187,14 @@ export default class Block {
   }
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
-    console.log(1);
     const isRender = this.componentDidUpdate(oldProps, newProps);
     if (isRender) {
       this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: Props, newProps: Props) {
-    return true;
+  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+    return oldProps !== null && newProps !== null;
   }
 
   setProps(newProps: Props): void {
@@ -211,7 +212,7 @@ export default class Block {
     }
 
     if (Object.values(lists).length) {
-      Object.assign(this._props, lists);
+      Object.assign(this._lists, lists);
     }
 
     if (Object.values(props).length) {
@@ -232,7 +233,7 @@ export default class Block {
         return typeof value === 'function' ? value.bind(target) : value;
       },
 
-      set(target, prop, value) {
+      set: (target, prop, value) => {
         if (target[prop] !== value) {
           target[prop] = value;
           this._setUpdate = true;

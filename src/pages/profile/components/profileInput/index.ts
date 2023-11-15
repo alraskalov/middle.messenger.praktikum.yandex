@@ -3,14 +3,19 @@ import './profileInput.scss';
 import template from './profileInput.template';
 
 interface IProps {
-  'label-text': string;
-  'input-name': string;
-  'input-type': string;
-  'input-value': string;
-  'input-placeholder': string;
-  'input-disabled': boolean;
+  labelText: string;
+  inputName: string;
+  inputType: string;
+  inputValue: string;
+  inputPlaceholder: string;
+  inputDisabled: boolean;
+  error: string;
+  isValid: boolean;
   attr?: {
     [key: string]: unknown;
+  }
+  events?: {
+    [key: string]: (event: InputEvent) => void
   }
 }
 export default class ProfileInput extends Block {

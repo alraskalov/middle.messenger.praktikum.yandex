@@ -1,7 +1,7 @@
 import Block from './Block/Block';
 
 function renderDOM(query: string, block: Block) {
-  const root = document.querySelector(query);
+  const root: HTMLElement = document.querySelector(query) as HTMLElement;
 
   root.prepend(block.getContent());
 

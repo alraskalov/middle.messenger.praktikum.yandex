@@ -10,6 +10,7 @@ interface IProps {
   inputValue: string;
   inputPlaceholder: string;
   error: string;
+  isValid: boolean;
   attr?: {
     [key: string]: unknown;
   }
@@ -18,13 +19,13 @@ interface IProps {
   }
 }
 export default class Input extends Block {
-  constructor(tag: string = 'div', _props: IProps) {
+  constructor(tag: string = 'label', _props: IProps) {
     super(tag, _props);
   }
 
-  // componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-  //   return oldProps.error !== newProps.error || oldProps.inputValue !== newProps.inputValue;
-  // }
+  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+    return oldProps.error !== newProps.error || oldProps.inputValue !== newProps.inputValue;
+  }
 
   render() {
     return this.compile(template, this._props);

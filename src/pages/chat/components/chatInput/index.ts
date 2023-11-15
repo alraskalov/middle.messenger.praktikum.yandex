@@ -7,8 +7,12 @@ interface IProps {
   inputType: string;
   inputValue: string;
   inputPlaceholder: string;
+  isValid: boolean;
   attr?: {
     [key: string]: unknown;
+  }
+  events?: {
+    [key: string]: (event: InputEvent) => void
   }
 }
 export default class ChatInput extends Block {

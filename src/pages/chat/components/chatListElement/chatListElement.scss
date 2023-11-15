@@ -32,6 +32,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: auto 193px auto;
+    gap: 10px;
   }
 
   &__avatar-wrapper {

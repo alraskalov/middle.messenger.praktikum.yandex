@@ -12,7 +12,7 @@ module.exports = {
             "env": {
                 "node": true
             },
-            "files": ['./**/*.{ts,tsx}'],
+            "files": ['./src/*.{ts,tsx}'],
             "parserOptions": {
                 "sourceType": "script"
             }

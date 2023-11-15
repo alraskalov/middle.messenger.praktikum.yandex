@@ -1,8 +1,6 @@
 const template = `
     <div class="chat-list-element__wrapper">
-        <div class="chat-list-element__avatar-wrapper">
-            {{{ avatar }}}
-        </div>
+        {{{ avatar }}}
 
         <div class="chat-list-element__description">
             <h3 class="chat-list-element__user-name">{{ userName }}</h3>

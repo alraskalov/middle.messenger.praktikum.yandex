@@ -4,7 +4,21 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__error {
+    margin: 5px 0 0;
+    color: $red-color-1;
+    text-align: right;
+
+    @include text2-badge;
+  }
 
   &__text {
     margin: 0;
@@ -30,6 +44,7 @@
 }
 
 .profile-input {
+  width: 65%;
   margin: 0;
   padding: 0;
   border: none;

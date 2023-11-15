@@ -15,8 +15,18 @@ const inputEmail = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Почта',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'email');
+
+      inputEmail.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -27,8 +37,18 @@ const inputLogin = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Логин',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'login');
+
+      inputLogin.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -39,6 +59,7 @@ const inputFirstName = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Имя',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
   },
@@ -46,11 +67,9 @@ const inputFirstName = new Input('label', {
     change: (event) => {
       const target = event.target as HTMLInputElement;
 
-      const valid = validate(target.value, 'name');
-      console.log(valid);
-      inputLogin.setProps({ error: valid.message });
-      inputLogin.setProps({ inputValue: 'asd' });
-      console.log(inputFirstName);
+      const { message, isValid } = validate(target.value, 'name');
+
+      inputFirstName.setProps({ error: message, inputValue: target.value, isValid });
     },
   },
 });
@@ -62,8 +81,18 @@ const inputSecondName = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Фамилия',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'name');
+
+      inputSecondName.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -74,8 +103,18 @@ const inputPhone = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Телефон',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'phone');
+
+      inputPhone.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -86,8 +125,18 @@ const inputPassword = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Пароль',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'password');
+
+      inputPassword.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -98,8 +147,18 @@ const inputRepeatPassword = new Input('label', {
   inputValue: '',
   inputPlaceholder: 'Пароль (ещё раз)',
   error: '',
+  isValid: false,
   attr: {
     class: 'label',
+  },
+  events: {
+    change: (event) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'password');
+
+      inputRepeatPassword.setProps({ error: message, inputValue: target.value, isValid });
+    },
   },
 });
 
@@ -131,6 +190,24 @@ const buttonsWrapper = new ButtonsBlockWrapper('buttons-block-wrapper', {
       events: {
         click: (e) => {
           e.preventDefault();
+          if (inputEmail._props.isValid
+            && inputLogin._props.isValid
+            && inputFirstName._props.isValid
+            && inputSecondName._props.isValid
+            && inputPhone._props.isValid
+            && inputPassword._props.isValid
+            && inputRepeatPassword._props.isValid
+          ) {
+            console.log({
+              mail: inputEmail._props.inputValue,
+              login: inputLogin._props.inputValue,
+              firstName: inputFirstName._props.inputValue,
+              secondName: inputSecondName._props.inputValue,
+              phone: inputPhone._props.inputValue,
+              password: inputPassword._props.inputValue,
+              repeatPassword: inputRepeatPassword._props.inputValue,
+            });
+          }
         },
       },
     }),

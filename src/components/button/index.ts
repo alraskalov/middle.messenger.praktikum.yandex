@@ -7,7 +7,7 @@ interface IProps {
   attr?: {
     [key: string]: unknown;
   },
-  events: {
+  events?: {
     [key: string]: (e: Event) => void;
   }
 }

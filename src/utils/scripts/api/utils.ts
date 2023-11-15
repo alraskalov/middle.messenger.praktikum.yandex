@@ -1,4 +1,4 @@
-export default function queryStringify(data: {}) {
+export default function queryStringify(data: { [key: string]: unknown }) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }

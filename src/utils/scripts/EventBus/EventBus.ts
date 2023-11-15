@@ -1,4 +1,6 @@
-export default class EventBus<T extends { [name: string]: unknown[] }> {
+import { Props } from '../Block/types';
+
+export default class EventBus<T extends { [name: string]: Array<Props> }> {
   private readonly listeners: {
     [K in keyof T]?: Array<(...args: T[K]) => void>;
   } = {};
@@ -8,7 +10,7 @@ export default class EventBus<T extends { [name: string]: unknown[] }> {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]?.push(callback);
   }
 
   off<K extends keyof T>(event: K, callback: (...args: T[K]) => void) {
@@ -16,7 +18,7 @@ export default class EventBus<T extends { [name: string]: unknown[] }> {
       throw new Error(`Нет события: ${event as string}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter(
+    this.listeners[event] = this.listeners[event]?.filter(
       (listener) => listener !== callback,
     );
   }
@@ -26,7 +28,7 @@ export default class EventBus<T extends { [name: string]: unknown[] }> {
       throw new Error(`Нет события: ${event as string}`);
     }
 
-    this.listeners[event].forEach((listener) => {
+    this.listeners[event]?.forEach((listener) => {
       listener(...args);
     });
   }
