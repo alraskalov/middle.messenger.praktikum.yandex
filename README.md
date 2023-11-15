@@ -50,3 +50,5 @@
 - `npm run dev` - сборка и запуск проекта в режиме разработки
 - `npm run start` - сборка и запуск стабильной версии проекта
 - `npm run dev` - сборка стабильной версии проекта
+- `npm run eslint` - ESlint
+- `npm run style` - Stylelint
