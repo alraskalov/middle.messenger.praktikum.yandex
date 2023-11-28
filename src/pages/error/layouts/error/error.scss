@@ -1,4 +1,4 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .error {
   display: flex;
@@ -16,12 +16,12 @@
   &__title {
     margin: 0;
 
-    @include title1Regular;
+    @include title1-regular;
   }
 
   &__subtitle {
     margin: 0;
 
-    @include title2Regular;
+    @include title2-regular;
   }
 }

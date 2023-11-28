@@ -1,4 +1,4 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .button {
   margin-top: auto;
@@ -6,15 +6,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   max-width: 280px;
   width: 100%;
   min-height: 37px;
-
   border: none;
   border-radius: 8px;
-  background: $BLUE_COLOR_1;
-
+  background: $blue-color-1;
   cursor: pointer;
-  color: $WHITE_COLOR_1;
+  color: $white-color-1;
 }

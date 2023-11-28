@@ -1,25 +1,23 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .auth-form {
   width: 100%;
-
   display: flex;
   align-items: center;
   flex-direction: column;
 
   &__title {
     margin: 0 0 40px;
+    color: $black-color-1;
 
-    color: $BLACK_COLOR_1;
-
-    @include title2Regular;
+    @include title2-regular;
   }
 
   &_login {
-    height: 450px;
+    min-height: 450px;
   }
 
   &_signup {
-    height: 615px;
+    min-height: 615px;
   }
 }

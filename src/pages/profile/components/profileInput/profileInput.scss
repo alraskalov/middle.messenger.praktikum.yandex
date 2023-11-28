@@ -1,29 +1,57 @@
-@import "/utils/styles/variables.scss";
+@import "/utils/styles/variables";
 
 .profile-label {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__error {
+    margin: 5px 0 0;
+    color: $red-color-1;
+    text-align: right;
+
+    @include text2-badge;
+  }
 
   &__text {
     margin: 0;
     padding: 0;
+    color: $black-color-1;
 
-    color: $BLACK_COLOR_1;
+    @include text1-regular;
+  }
 
-    @include text1Regular;
+  &:not(:last-child) {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  &:not(:last-child)::after {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    content: "";
+    width: 100%;
+    border-bottom: 1px solid $gray-color-2;
   }
 }
 
 .profile-input {
+  width: 65%;
   margin: 0;
   padding: 0;
   border: none;
   outline: none;
   background-color: transparent;
   text-align: right;
+  color: $gray-color-1;
 
-  color: $GRAY_COLOR_1;
-
-  @include text1Regular;
+  @include text1-regular;
 }

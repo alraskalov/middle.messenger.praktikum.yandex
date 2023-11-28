@@ -5,61 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/utils/styles/style.scss">
 
-    <link rel="stylesheet" href="/components/backButton/backButton.scss">
-    <link rel="stylesheet" href="/components/avatar/avatar.scss">
-    <link rel="stylesheet" href="/pages/profile/components/backSidebar/backSidebar.scss">
-    <link rel="stylesheet" href="/pages/profile/components/avatarWrapper/avatarWrapper.scss">
-    <link rel="stylesheet" href="/pages/profile/components/dividingLine/dividingLine.scss">
-    <link rel="stylesheet" href="/pages/profile/components/profileInput/profileInput.scss">
-    <link rel="stylesheet" href="/pages/profile/components/profileForm/profileForm.scss">
-    <link rel="stylesheet" href="/pages/profile/components/linkList/linkList.scss">
-    <link rel="stylesheet" href="/pages/profile/components/listElement/listElement.scss">
-    <link rel="stylesheet" href="/components/link/link.scss">
-
-    <link rel="stylesheet" href="/pages/profile/layouts/sidebar/sidebar.scss">
-
     <title>Messenger | Profile</title>
 </head>
 <body>
-    <div class="container container_column">
-        {{#> sidebar/sidebar content-class="content_height_576"}}
-            {{#> avatarWrapper/avatarWrapper avatar-wrapper-class="avatar-wrapper_edit" }}
-                {{> avatar/avatar  avatar-src="/assets/icons/avatar.svg" }}
-            {{/ avatarWrapper/avatarWrapper }}
-
-            {{#> profileForm/profileForm form-title="Иван"}}
-                {{> profileInput/profileInput input-name="email" input-type="email" label-text="Почта" input-value="pochta@yandex.ru" input-disabled="true" }}
-                {{> dividingLine/dividingLine }}
-
-                {{> profileInput/profileInput input-name="login" input-type="text" label-text="Логин" input-value="ivanivanov" input-disabled="true" }}
-                {{> dividingLine/dividingLine }}
-
-                {{> profileInput/profileInput input-name="first_name" input-type="text" label-text="Имя" input-value="Иван" input-disabled="true" }}
-                {{> dividingLine/dividingLine }}
-
-                {{> profileInput/profileInput input-name="second_name" input-type="text" label-text="Фамилия" input-value="Иванов" input-disabled="true" }}
-                {{> dividingLine/dividingLine }}
-
-                {{> profileInput/profileInput input-name="display_name" input-type="text" label-text="Имя в чате" input-value="Иван" input-disabled="true" }}
-                {{> dividingLine/dividingLine }}
-
-                {{> profileInput/profileInput input-name="phone" input-type="tel" label-text="Телефон" input-value="+7 (909) 967 30 30" input-disabled="true" }}
-            {{/ profileForm/profileForm}}
-
-            {{#> linkList/linkList }}
-                {{#> listElement/listElement }}
-                    {{> link/link link-class="link_regular" link-text="Изменить данные" link-href="/src/pages/profile/modules/editDataProfile/index.html" }}
-                    {{> dividingLine/dividingLine }}
-                {{/ listElement/listElement }}
-                {{#> listElement/listElement }}
-                    {{> link/link link-class="link_regular" link-text="Изменить пароль" link-href="/src/pages/profile/modules/editPasswordProfile/index.html" }}
-                    {{> dividingLine/dividingLine }}
-                {{/ listElement/listElement }}
-                {{#> listElement/listElement }}
-                    {{> link/link link-class="link_regular link_red" link-text="Выйти" link-href="/src/pages/auth/modules/login/index.html" }}
-                {{/ listElement/listElement }}
-            {{/ linkList/linkList }}
-        {{/ sidebar/sidebar}}
-    </div>
+    <script src="./index.ts" type="module"></script>
 </body>
 </html>

@@ -1,13 +1,10 @@
-import {defineConfig, Plugin} from 'vite'
-import handlebars from "vite-plugin-handlebars";
-import {resolve} from "path";
+import {defineConfig, Plugin} from 'vite';
 
-import inputWrapper from "./src/pages/auth/layouts/inputWrapper/inputWrapper";
-import buttonsBlockWrapper from "./src/pages/auth/layouts/buttonsBlockWrapper/buttonsBlockWrapper";
-import error from "./src/pages/error/layouts/error/error";
+import {resolve} from 'path';
+import handlebars from 'vite-plugin-handlebars';
 
 export default defineConfig({
-    root: resolve(__dirname, "src"),
+    root: resolve(__dirname, 'src'),
     server: {
         port: 3000,
     },
@@ -16,24 +13,23 @@ export default defineConfig({
             partialDirectory: [
                 resolve(__dirname, './src/components'),
                 resolve(__dirname, './src/pages/auth/components'),
+                resolve(__dirname, './src/pages/auth/layouts'),
                 resolve(__dirname, './src/pages/profile/components'),
-                resolve(__dirname, './src/pages/chat/components'),
                 resolve(__dirname, './src/pages/profile/layouts'),
+                resolve(__dirname, './src/pages/chat/components'),
                 resolve(__dirname, './src/pages/chat/layouts'),
             ],
-            helpers: {
-                inputWrapper,
-                buttonsBlockWrapper,
-                error,
-            },
             context: {
-                global: "global",
-            }
+                global: 'global',
+            },
         }) as unknown as Plugin,
     ],
-
+    preview: {
+      port: 3000,
+    },
+    publicDir: resolve(__dirname, 'public'),
     build: {
-        outDir: resolve(__dirname, "dist"),
+        outDir: resolve(__dirname, 'dist'),
         rollupOptions: {
             input: {
                 index: resolve(__dirname, 'src/index.html'),
@@ -48,7 +44,10 @@ export default defineConfig({
                 viewProfile: resolve(__dirname, 'src/pages/profile/modules/viewProfile/index.html'),
                 editPasswordProfile: resolve(__dirname, 'src/pages/profile/modules/editPasswordProfile/index.html'),
                 editDataProfile: resolve(__dirname, 'src/pages/profile/modules/editDataProfile/index.html'),
-            }
-        }
-    }
-})
+            },
+            output: {
+                assetFileNames: 'assets/[name].[ext]',
+            },
+        },
+    },
+});
