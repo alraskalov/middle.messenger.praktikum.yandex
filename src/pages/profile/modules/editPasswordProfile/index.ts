@@ -5,8 +5,9 @@ import BackSidebar from '../../components/backSidebar';
 import ProfileForm from '../../components/profileForm';
 import ProfileInput from '../../components/profileInput';
 import Button from '../../../../components/button';
-import renderDOM from '../../../../utils/scripts/renderDOM';
 import validate from '../../../../utils/scripts/validate/validate';
+import Router from "../../../../utils/scripts/router/Router.ts";
+import Routes from "../../../../utils/scripts/router/Routes.ts";
 
 const avatar = new Avatar(
   'div',
@@ -22,6 +23,11 @@ const backButton = new BackButton('button', {
   attr: {
     class: 'back-button',
   },
+    events: {
+      click: () => {
+          Router.go(Routes.Profile)
+      }
+    }
 });
 
 const backSidebar = new BackSidebar('aside', {
@@ -146,4 +152,4 @@ const sidebarLayout = new LayoutSidebar('div', {
   },
 });
 
-renderDOM('body', sidebarLayout);
+export default sidebarLayout;

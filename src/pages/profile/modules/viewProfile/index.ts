@@ -4,10 +4,12 @@ import BackButton from '../../../../components/backButton';
 import BackSidebar from '../../components/backSidebar';
 import ProfileForm from '../../components/profileForm';
 import ProfileInput from '../../components/profileInput';
-import renderDOM from '../../../../utils/scripts/renderDOM';
+// import renderDOM from '../../../../utils/scripts/renderDOM';
 import LinkList from '../../components/linkList';
 import ListElement from '../../components/listElement';
 import Link from '../../../../components/link';
+import Router from "../../../../utils/scripts/router/Router.ts";
+import Routes from "../../../../utils/scripts/router/Routes.ts";
 
 const avatar = new Avatar(
   'div',
@@ -23,6 +25,11 @@ const backButton = new BackButton('button', {
   attr: {
     class: 'back-button',
   },
+    events: {
+        click: () => {
+            Router.go(Routes.Chat)
+        }
+    }
 });
 
 const backSidebar = new BackSidebar('aside', {
@@ -38,7 +45,12 @@ const linkList = new LinkList('ul', {
       element: new Link('div', {
         'link-class': 'link_regular',
         'link-text': 'Изменить данные',
-        'link-href': '/src/pages/profile/modules/editDataProfile/index.html',
+        'link-href': '',
+          events: {
+            click: () => {
+                Router.go(Routes.EditDataProfile)
+            }
+          }
       }),
       attr: {
         class: 'list-element',
@@ -48,7 +60,12 @@ const linkList = new LinkList('ul', {
       element: new Link('div', {
         'link-class': 'link_regular',
         'link-text': 'Изменить пароль',
-        'link-href': '/src/pages/profile/modules/editPasswordProfile/index.html',
+        'link-href': '',
+          events: {
+              click: () => {
+                  Router.go(Routes.EditProfilePassword)
+              }
+          }
       }),
       attr: {
         class: 'list-element',
@@ -58,7 +75,12 @@ const linkList = new LinkList('ul', {
       element: new Link('div', {
         'link-class': 'link_regular link_red',
         'link-text': 'Выйти',
-        'link-href': '/src/pages/auth/modules/login/index.html',
+        'link-href': '',
+          events: {
+              click: () => {
+                  Router.go(Routes.Login)
+              }
+          }
       }),
       attr: {
         class: 'list-element',
@@ -166,4 +188,6 @@ const sidebarLayout = new LayoutSidebar('div', {
   },
 });
 
-renderDOM('body', sidebarLayout);
+export default sidebarLayout;
+
+// renderDOM('body', sidebarLayout);

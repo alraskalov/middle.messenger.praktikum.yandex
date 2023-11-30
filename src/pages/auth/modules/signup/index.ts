@@ -5,8 +5,11 @@ import Input from '../../../../components/input';
 import ButtonsBlockWrapper from '../../layouts/buttonsBlockWrapper';
 import Button from '../../../../components/button';
 import Link from '../../../../components/link';
-import renderDOM from '../../../../utils/scripts/renderDOM';
+// import renderDOM from '../../../../utils/scripts/renderDOM';
 import validate from '../../../../utils/scripts/validate/validate';
+import Wrapper from "../../../../components/wrapper";
+import Router from "../../../../utils/scripts/router/Router.ts";
+import Routes from "../../../../utils/scripts/router/Routes.ts";
 
 const inputEmail = new Input('label', {
   inputName: 'email',
@@ -180,7 +183,7 @@ const inputWrapper = new InputWrapper(
   },
 );
 
-const buttonsWrapper = new ButtonsBlockWrapper('buttons-block-wrapper', {
+const buttonsWrapper = new ButtonsBlockWrapper('div', {
   buttons: [
     new Button('button', {
       'button-text': 'Зарегистрироваться',
@@ -214,7 +217,12 @@ const buttonsWrapper = new ButtonsBlockWrapper('buttons-block-wrapper', {
     new Link('div', {
       'link-class': 'link_xs',
       'link-text': 'Войти',
-      'link-href': '/pages/auth/modules/login/index.html',
+      'link-href': '',
+        events: {
+            click: () => {
+                Router.go(Routes.Login)
+            }
+        }
     }),
   ],
   attr: {
@@ -222,7 +230,7 @@ const buttonsWrapper = new ButtonsBlockWrapper('buttons-block-wrapper', {
   },
 });
 
-const popup = new Popup('popup', {
+const popup = new Popup('div', {
   element: new Form('form', {
     formTitle: 'Регистрация',
     wrapper: [inputWrapper, buttonsWrapper],
@@ -235,4 +243,18 @@ const popup = new Popup('popup', {
   },
 });
 
-renderDOM('.container', popup);
+const container = new Wrapper("div", {
+    element: [popup],
+    attr: {
+        class: "container container_column container_center",
+    }
+})
+
+const main = new Wrapper("main", {
+    element: [container],
+    attr: {},
+})
+
+export default main;
+
+// renderDOM('.container', popup);

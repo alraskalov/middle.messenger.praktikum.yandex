@@ -7,9 +7,10 @@ import ChatSidebar from './layouts/chatSidebar';
 import SearchInput from './components/searchInput';
 import ChatList from './components/chatList';
 import ChatListElement from './components/chatListElement';
-import renderDOM from '../../utils/scripts/renderDOM';
 import ChatInput from './components/chatInput';
 import validate from '../../utils/scripts/validate/validate';
+import Wrapper from "../../components/wrapper";
+import "./index.scss"
 
 const inputMessage = new ChatInput('label', {
   inputName: 'message',
@@ -224,6 +225,18 @@ const chatSidebar = new ChatSidebar('aside', {
   },
 });
 
-renderDOM('.main', chatScreen);
+const main = new Wrapper("main", {
+    element: [chatScreen],
+    attr: {
+        class: "main",
+    }
+})
 
-renderDOM('.container', chatSidebar);
+const chat = new Wrapper("div", {
+    element: [chatSidebar, main],
+    attr: {
+        class: "container",
+    }
+})
+
+export default chat;

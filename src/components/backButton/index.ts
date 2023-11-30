@@ -6,6 +6,9 @@ interface IProps {
   attr: {
     [key: string]: unknown;
   }
+    events?: {
+        [key: string]: (event: InputEvent) => void
+    }
 }
 export default class BackButton extends Block {
   constructor(tag: string = 'button', _props: IProps) {
