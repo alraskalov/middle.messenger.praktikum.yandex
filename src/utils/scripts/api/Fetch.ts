@@ -1,27 +1,35 @@
 import { HTTP, METHODS, Options } from './types';
 import queryStringify from './utils';
 
+const apiUrl = 'https://ya-praktikum.tech/api/v2';
+
 export default class HTTPTransport {
-  get: HTTP = (url, options = {}) => this.request(
-    url,
+
+    protected endpoint: string;
+
+    constructor(endpoint: string) {
+        this.endpoint = `${apiUrl}${endpoint}`;
+    }
+  get: HTTP = (url = "/", options = {}) => this.request(
+    this.endpoint + url,
     { ...options, method: METHODS.GET },
     options.timeout,
   );
 
   post: HTTP = (url, options = {}) => this.request(
-    url,
+      this.endpoint + url,
     { ...options, method: METHODS.POST },
     options.timeout,
   );
 
   put: HTTP = (url, options = {}) => this.request(
-    url,
+      this.endpoint + url,
     { ...options, method: METHODS.PUT },
     options.timeout,
   );
 
   delete: HTTP = (url, options = {}) => this.request(
-    url,
+      this.endpoint + url,
     { ...options, method: METHODS.DELETE },
     options.timeout,
   );
