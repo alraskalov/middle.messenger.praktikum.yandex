@@ -69,9 +69,6 @@ class WrapperChat extends Block {
                             chatController.removeUserFromChat(this._props.selectedChat, Number(inputDeleteUser._props.inputValue))
                             chatController.updateChats()
                                 .catch(() => false)
-                                .finally(() => {
-                                    console.log('Получили чаты');
-                                });
                             dropdown.hide()
                         },
                     },
@@ -154,9 +151,6 @@ class WrapperChat extends Block {
                             chatController.addUserToChat(this._props.selectedChat, Number(inputAddUser._props.inputValue))
                             chatController.updateChats()
                                 .catch(() => false)
-                                .finally(() => {
-                                    console.log('Получили чаты');
-                                });
                             dropdown.hide()
                         },
                     },
@@ -332,9 +326,6 @@ class WrapperChat extends Block {
     _init() {
         chatController.fetchChats()
             .catch(() => false)
-            .finally(() => {
-                console.log('Получили чаты');
-            });
     }
 
     componentDidUpdate(oldProps: any, newProps: any): boolean {

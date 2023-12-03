@@ -31,9 +31,7 @@ class AuthController {
 
             await chatController.fetchChats()
                 .catch((err) => console.log(err))
-                .finally(() => {
-                    console.log('Получили чаты');
-                });
+
 
             Router.go(Routes.Chat);
         } catch (error: unknown) {

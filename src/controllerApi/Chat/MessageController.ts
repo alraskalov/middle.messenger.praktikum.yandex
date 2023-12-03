@@ -66,9 +66,6 @@ class MessagesController {
 
         chatController.updateChats()
             .catch(() => false)
-            .finally(() => {
-                console.log('Получили чаты');
-            });
     }
 
     private onClose(id: number) {

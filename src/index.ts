@@ -48,9 +48,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         await chatController.fetchChats()
             .catch((err) => console.log(err))
-            .finally(() => {
-                console.log('Получили чаты');
-            });
 
         if (!isProtectedRoute) {
             Router.go(Routes.Profile);
