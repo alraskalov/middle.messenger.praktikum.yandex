@@ -35,6 +35,10 @@ class AuthController {
 
             Router.go(Routes.Chat);
         } catch (error: unknown) {
+            if ((error as Error)?.message === "User already in system") {
+                Router.go(Routes.Chat)
+            }
+
             store.set('user.error', (error as Error).message);
             console.error((error as Error).message);
         }
