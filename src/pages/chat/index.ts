@@ -1,19 +1,22 @@
-import ChatScreen from './layouts/chatScreen';
 import Avatar from '../../components/avatar';
-import SubmitButton from '../../components/submitButton';
-import SafetyPinButton from '../../components/safetyPinButton';
-import SettingsButton from '../../components/settingsButton';
 import ChatSidebar from './layouts/chatSidebar';
 import SearchInput from './components/searchInput';
 import ChatList from './components/chatList';
 import ChatListElement from './components/chatListElement';
 import ChatInput from './components/chatInput';
 import validate from '../../utils/scripts/validate/validate';
-import Wrapper from "../../components/wrapper";
 import "./index.scss"
-import Link from "../../components/link";
 import Router from "../../utils/scripts/router/Router.ts";
 import Routes from "../../utils/scripts/router/Routes.ts";
+import Button from "../../components/button";
+import Form from "../../components/form";
+import ButtonsBlockWrapper from "../auth/layouts/buttonsBlockWrapper";
+import ProfileInput from "../profile/components/profileInput";
+import Popup from "../../components/popup";
+import DropdownForm from "../../components/dropdownForm";
+import {chatController} from "../../controllerApi";
+import WrapperChat from "./components/wrapperChat";
+import Wrapper from "../../components/wrapper";
 
 const inputMessage = new ChatInput('label', {
   inputName: 'message',
@@ -25,7 +28,7 @@ const inputMessage = new ChatInput('label', {
     class: 'label-message',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { isValid } = validate(target.value, 'message');
@@ -35,31 +38,84 @@ const inputMessage = new ChatInput('label', {
   },
 });
 
-const chatScreen = new ChatScreen('section', {
-  avatar: new Avatar('div', {
-    src: '/assets/icons/avatar.svg',
-  }),
-  submitButton: new SubmitButton('div', {
-    events: {
-      click: (event) => {
-        event.preventDefault();
-
-        if (inputMessage._props.isValid) {
-          console.log({
-            inputMessage: inputMessage._props.inputValue,
-          });
-        }
-      },
-    },
-  }),
-  safetyPinButton: new SafetyPinButton('div', {}),
-  settingsButton: new SettingsButton('div', {}),
-  userName: 'Вадим',
-  input: inputMessage,
+const inputCreateChat = new ProfileInput('label', {
+  labelText: '',
+  inputName: 'create_chat',
+  inputType: 'text',
+  inputValue: '',
+  inputDisabled: false,
+  isValid: true,
   attr: {
-    class: 'chat-screen',
+    class: 'profile-label',
   },
-});
+  events: {
+    change: (event: InputEvent) => {
+      const target = event.target as HTMLInputElement;
+
+      const { message, isValid } = validate(target.value, 'create_chat');
+
+      inputCreateChat.setProps({ error: message, inputValue: target.value, isValid });
+    }
+  }
+})
+
+const buttonCreateChat = new ButtonsBlockWrapper('div', {
+  buttons: [
+    new Button('button', {
+      'button-text': 'Создать чат',
+      "attr": {
+        class: 'button',
+      },
+      "events": {
+        click: (e) => {
+          e.preventDefault();
+
+          chatController.create(inputCreateChat._props.inputValue);
+          inputCreateChat.setProps({inputValue: ""})
+
+          dropdown.hide()
+        },
+      },
+    }),
+  ],
+
+  attr: {
+    class: 'buttons-block-wrapper',
+  },
+})
+
+const form = new Form('form', {
+  formTitle: 'Введите название чата',
+  wrapper: [
+    new ButtonsBlockWrapper('div', {
+      buttons: [inputCreateChat, buttonCreateChat],
+
+      attr: {
+        class: 'buttons-block-wrapper',
+      },
+    })
+  ],
+  attr: {
+    class: 'dropdown-form',
+    name: "dropdown-form",
+  },
+})
+
+const dropDownWrapper = new Popup("div", {
+  element: form,
+  attr: {
+    class: 'popup',
+  },
+})
+
+const dropdown = new DropdownForm("div", {
+  isVisible: false,
+  element: dropDownWrapper,
+  attr: {
+    class: "dropdown"
+  }
+})
+dropdown.hide()
 
 const chatSidebar = new ChatSidebar('aside', {
   search: new SearchInput('div', {
@@ -67,16 +123,34 @@ const chatSidebar = new ChatSidebar('aside', {
       class: 'search-input-wrapper',
     },
   }),
-  button: new Link('div', {
-    'link-class': 'link_xs',
-    'link-text': 'Профиль',
-    'link-href': '',
-    events: {
-      click: () => {
-        Router.go(Routes.Profile)
-      }
-    }
-  }),
+  buttons: [
+    new Button('button', {
+      'button-text': 'Профиль',
+      "attr": {
+        class: 'button',
+      },
+      "events": {
+        click: (e) => {
+          e.preventDefault();
+
+          Router.go(Routes.Profile)
+        },
+      },
+    }),
+    new Button('button', {
+      'button-text': 'Создать чат',
+      "attr": {
+        class: 'button',
+      },
+      "events": {
+        click: (e) => {
+          e.preventDefault();
+
+          dropdown.show()
+        },
+      },
+    }),
+  ],
   chatList: new ChatList('ul', {
     element: [
       new ChatListElement('li', {
@@ -239,17 +313,18 @@ const chatSidebar = new ChatSidebar('aside', {
 });
 
 const main = new Wrapper("main", {
-    element: [chatScreen],
+  element: [],
     attr: {
         class: "main",
     }
 })
 
-const chat = new Wrapper("div", {
-    element: [chatSidebar, main],
+const chat = new WrapperChat("div", {
+  dropdown: dropdown,
+  chatSidebar: chatSidebar,
+  main: main,
     attr: {
         class: "container",
     }
 })
-
 export default chat;

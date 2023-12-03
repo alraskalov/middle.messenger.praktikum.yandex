@@ -1,17 +1,14 @@
 import Block from '../../../../utils/scripts/Block/Block';
-import './chatSidebar.scss';
-import template from './chatSidebar.template';
-
+import './message.scss';
+import template from './message.template.ts';
 
 interface IProps {
-  search: Block;
-  chatList: Block;
-  buttons: Array<Block>;
+  value: string[]
   attr?: {
     [key: string]: unknown;
   }
 }
-class ChatSidebar extends Block {
+export default class Message extends Block {
   constructor(tag: string = 'div', _props: IProps) {
     super(tag, _props);
   }
@@ -20,6 +17,3 @@ class ChatSidebar extends Block {
     return this.compile(template, this._props);
   }
 }
-
-
-export default ChatSidebar

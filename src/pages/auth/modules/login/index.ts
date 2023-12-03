@@ -1,14 +1,13 @@
 import Popup from '../../../../components/popup';
-import Form from '../../components/form';
 import InputWrapper from '../../layouts/inputWrapper';
 import Input from '../../../../components/input';
 import ButtonsBlockWrapper from '../../layouts/buttonsBlockWrapper';
 import Button from '../../../../components/button';
-import Link from '../../../../components/link';
 import validate from '../../../../utils/scripts/validate/validate';
 import Wrapper from "../../../../components/wrapper";
 import Router from "../../../../utils/scripts/router/Router.ts";
 import Routes from "../../../../utils/scripts/router/Routes.ts";
+import Form from "../../../../components/form";
 
 const inputLogin = new Input('label', {
   inputName: 'login',
@@ -91,15 +90,18 @@ const form = new Form('form', {
                         },
                     },
                 }),
-                new Link('div', {
-                    'link-class': 'link_xs',
-                    'link-text': 'Нет аккаунта?',
-                    'link-href': '',
-                    events: {
-                        click: () => {
+                new Button('button', {
+                    'button-text': 'Нет аккаунта?',
+                    "attr": {
+                        class: 'link link_regular link_button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
                             Router.go(Routes.Signup)
-                        }
-                    }
+                        },
+                    },
                 }),
             ],
             attr: {

@@ -1,6 +1,7 @@
 import {ChatApi} from "../../classApi";
 import store from "../../utils/scripts/store";
 import {Chat} from "./types.ts";
+import messagesController from "./MessageController.ts";
 
 class ChatController {
     private readonly api: ChatApi;
@@ -21,13 +22,19 @@ class ChatController {
         }
     };
 
+    updateChats = async () => {
+        const chats: Chat[] = await this.api.read() as Chat[];
+
+        store.set('chats', chats);
+    }
+
     fetchChats = async () => {
         const chats: Chat[] = await this.api.read() as Chat[];
 
-        // chats.map(async (chat) => {
-        //     const token = await this.getToken(chat.id);
-        //     // await messagesController.connect(chat.id, token);
-        // });
+        chats.map(async (chat) => {
+            const token = await this.getToken(chat.id);
+            await messagesController.connect(chat.id, token);
+        });
 
         store.set('chats', chats);
     };
@@ -49,11 +56,11 @@ class ChatController {
 
     getToken = (id: number) => this.api.getToken(id);
 
-    // selectChat = async (id: number) => {
-    //     const token = await this.getToken(id);
-    //     messagesController.connect(id, token);
-    //     store.set('selectedChat', id);
-    // };
+    selectChat = async (id: number) => {
+        const token = await this.getToken(id);
+        messagesController.connect(id, token);
+        store.set('selectedChat', id);
+    };
 }
 
 export const chatController = new ChatController();

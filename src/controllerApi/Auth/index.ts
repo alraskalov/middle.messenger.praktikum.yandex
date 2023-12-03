@@ -3,6 +3,7 @@ import store from "../../utils/scripts/store";
 import {SignIn, SignUp} from "../../classApi/Auth/types.ts";
 import Router from "../../utils/scripts/router/Router.ts";
 import Routes from "../../utils/scripts/router/Routes.ts";
+import {chatController} from "../Chat";
 
 class AuthController {
     private api = new AuthApi();
@@ -27,6 +28,12 @@ class AuthController {
             await this.fetchUser();
 
             store.set('user.error', undefined);
+
+            await chatController.fetchChats()
+                .catch((err) => console.log(err))
+                .finally(() => {
+                    console.log('Получили чаты');
+                });
 
             Router.go(Routes.Chat);
         } catch (error: unknown) {

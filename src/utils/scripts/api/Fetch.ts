@@ -38,11 +38,12 @@ export default class HTTPTransport {
   public request = (url: string, options: Options = {}, timeout = 5000) => {
     const { method, data, headers = {} } = options;
     return new Promise((resolve, reject) => {
+
       if (!method) {
         reject(new Error('No method'));
-
         return;
       }
+
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
 

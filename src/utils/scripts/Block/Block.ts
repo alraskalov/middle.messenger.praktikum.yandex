@@ -56,8 +56,11 @@ export default class Block<Props extends Record<string, any> = any> {
 
   private init(): void {
     this._element = this.createDocumentElement(this._meta?.tag);
+    this._init();
     this._eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
+
+  _init() {}
 
   private createDocumentElement(tag: string): HTMLElement {
     const element: HTMLElement = document.createElement(tag) as HTMLElement;
@@ -196,16 +199,13 @@ export default class Block<Props extends Record<string, any> = any> {
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
-    return oldProps !== null && newProps !== null;
+    return JSON.stringify(newProps) !== JSON.stringify(oldProps);
   }
 
   setProps(newProps: Props): void {
     if (!newProps) {
       return;
     }
-
-    this._setUpdate = false;
-    const oldValue = { ...this._props };
 
     const { children, props, lists } = this.getChildren(newProps);
 
@@ -221,25 +221,22 @@ export default class Block<Props extends Record<string, any> = any> {
       Object.assign(this._props, props);
     }
 
-    if (this._setUpdate) {
-      this._eventBus.emit(Block.EVENTS.FLOW_CDU, oldValue, this._props);
-      this._setUpdate = false;
-    }
   }
 
   private _makePropsProxy(props: Props) {
-    return new Proxy(props, {
+    const self = this;
 
+    return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
 
-      set: (target, prop: string, value) => {
-        if (target[prop] !== value) {
-          target[prop as keyof Props] = value;
-          this._setUpdate = true;
-        }
+      set(target, prop, value) {
+        const oldTarget = { ...target };
+        target[prop as keyof Props] = value;
+
+        self._eventBus.emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
 
@@ -250,7 +247,7 @@ export default class Block<Props extends Record<string, any> = any> {
   }
 
   show(): void {
-    this.getContent().style.display = 'block';
+    this.getContent().style.display = 'flex';
   }
 
   hide(): void {

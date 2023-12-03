@@ -6,10 +6,13 @@ interface IProps {
   avatar: Block;
   userName: string;
   userMessage: string;
-  messageDate: string;
+  messageDate: Date | string;
   messageCount?: string;
   attr?: {
     [key: string]: unknown;
+  }
+  events?: {
+    [key: string]: (event: InputEvent) => void
   }
 }
 export default class ChatListElement extends Block {

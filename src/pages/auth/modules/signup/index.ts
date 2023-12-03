@@ -1,19 +1,18 @@
 import Popup from '../../../../components/popup';
-import FormWithStore from '../../components/form';
 import InputWrapper from '../../layouts/inputWrapper';
 import Input from '../../../../components/input';
 import ButtonsBlockWrapper from '../../layouts/buttonsBlockWrapper';
 import Button from '../../../../components/button';
-import Link from '../../../../components/link';
 import validate from '../../../../utils/scripts/validate/validate';
 import Wrapper from "../../../../components/wrapper";
 import Router from "../../../../utils/scripts/router/Router.ts";
 import Routes from "../../../../utils/scripts/router/Routes.ts";
+import Form from "../../../../components/form";
 
-const inputEmail = new Input('label', {
-  inputName: 'email',
-  labelText: 'Почта',
-  inputType: 'email',
+const inputEmailSignUp = new Input('label', {
+    labelText: 'Почта',
+    inputName: 'email',
+    inputType: 'email',
   inputValue: '',
   inputPlaceholder: 'Почта',
   error: '',
@@ -27,7 +26,7 @@ const inputEmail = new Input('label', {
 
       const { message, isValid } = validate(target.value, 'email');
 
-      inputEmail.setProps({ error: message, inputValue: target.value, isValid });
+        inputEmailSignUp.setProps({ error: message, inputValue: target.value, isValid });
     },
   },
 });
@@ -164,13 +163,13 @@ const inputRepeatPassword = new Input('label', {
   },
 });
 
-const form = new FormWithStore('form', {
+const form = new Form('form', {
     formTitle: 'Регистрация',
     wrapper: [new InputWrapper(
         'div',
         {
             "inputs": [
-                inputEmail,
+                inputEmailSignUp,
                 inputLogin,
                 inputFirstName,
                 inputSecondName,
@@ -194,7 +193,7 @@ const form = new FormWithStore('form', {
                         click: (e) => {
                             e.preventDefault();
 
-                            if (inputEmail._props.isValid
+                            if (inputEmailSignUp._props.isValid
                                 && inputLogin._props.isValid
                                 && inputFirstName._props.isValid
                                 && inputSecondName._props.isValid
@@ -206,7 +205,7 @@ const form = new FormWithStore('form', {
                                     "first_name": inputFirstName._props.inputValue,
                                     "second_name": inputSecondName._props.inputValue,
                                     "login": inputLogin._props.inputValue,
-                                    "email": inputEmail._props.inputValue,
+                                    "email": inputEmailSignUp._props.inputValue,
                                     "password": inputPassword._props.inputValue,
                                     "phone": inputPhone._props.inputValue
                                 })
@@ -214,15 +213,18 @@ const form = new FormWithStore('form', {
                         },
                     },
                 }),
-                new Link('div', {
-                    'link-class': 'link_xs',
-                    'link-text': 'Войти',
-                    'link-href': '',
-                    events: {
-                        click: () => {
-                            Router.go(Routes.Login)
-                        }
-                    }
+                new Button('button', {
+                    'button-text': 'Войти',
+                    "attr": {
+                        class: 'link link_regular link_button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
+                            Router.go(Routes.Root)
+                        },
+                    },
                 }),
             ],
             attr: {

@@ -8,13 +8,15 @@ import {StoreEvents} from "./types.ts";
 export class Store extends EventBus< { [name: string]: Props[] }> {
     private state: any = {};
 
-    public set = (path: string, value: unknown) => {
+    public set(path: string, value: unknown) {
         set(this.state, path, value);
 
         this.emit(StoreEvents.Updated, this.getState());
-    };
+    }
 
-    public getState = () => this.state;
+    public getState() {
+        return this.state;
+    }
 }
 
 const store = new Store();

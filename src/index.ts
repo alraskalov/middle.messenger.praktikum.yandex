@@ -8,12 +8,11 @@ import error404 from "./pages/error/modules/404";
 import editDataProfile from "./pages/profile/modules/editDataProfile";
 import editPasswordProfile from "./pages/profile/modules/editPasswordProfile";
 import error500 from "./pages/error/modules/500";
-import {authController} from "./controllerApi";
+import {authController, chatController} from "./controllerApi";
 
 document.addEventListener("DOMContentLoaded", async () => {
     Router
         .use(Routes.Root, login)
-        .use(Routes.Login, login)
         .use(Routes.Signup, signup)
         .use(Routes.Chat, chat)
         .use(Routes.Profile, viewProfile)
@@ -46,6 +45,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         await authController.fetchUser();
         Router.start();
+
+        await chatController.fetchChats()
+            .catch((err) => console.log(err))
+            .finally(() => {
+                console.log('Получили чаты');
+            });
 
         if (!isProtectedRoute) {
             Router.go(Routes.Profile);

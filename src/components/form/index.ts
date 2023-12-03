@@ -1,10 +1,11 @@
 import './form.scss';
 import template from './form.template';
-import Block from '../../../../utils/scripts/Block/Block';
-import {authController} from "../../../../controllerApi";
-import {SignIn, SignUp} from "../../../../classApi/Auth/types.ts";
-import store from "../../../../utils/scripts/store";
-import connect from "../../../../utils/scripts/store/connect.ts";
+import Block from "../../utils/scripts/Block/Block.ts";
+import {SignIn, SignUp} from "../../classApi/Auth/types.ts";
+import {authController} from "../../controllerApi";
+import store from "../../utils/scripts/store";
+import connect from "../../utils/scripts/store/connect.ts";
+
 
 interface IProps {
     formTitle: string;

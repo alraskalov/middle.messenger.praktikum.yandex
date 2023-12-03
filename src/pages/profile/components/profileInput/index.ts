@@ -25,7 +25,7 @@ class ProfileInput extends Block {
     super(tag, _props);
   }
 
-  render() {
+    render() {
       if (this._props?.storeData && this._props?.storeData[this._props.inputName] && this._props.inputValue === '') {
           try {
               const { message, isValid } = validate(this._props.storeData[this._props.inputName], this._props.inputName);
@@ -40,6 +40,6 @@ class ProfileInput extends Block {
   }
 }
 
-const withUser = connect(state => ({ storeData: { ...state.user }.data }));
+const withUser = connect((state) => ({ storeData: { ...state.user }.data }));
 
 export default withUser(ProfileInput);

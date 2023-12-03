@@ -15,3 +15,12 @@ export type Options = {
 export type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 export type HTTP = (url: string, options?: OptionsWithoutMethod) => Promise<unknown>;
+
+export enum SocketEvent {
+  Connected = 'connected',
+  Error = 'error',
+  Message = 'message',
+  Close = 'close',
+}
+
+
