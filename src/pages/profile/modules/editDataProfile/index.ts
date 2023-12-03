@@ -41,7 +41,7 @@ const inputEmail = new ProfileInput('label', {
   labelText: 'Почта',
   inputName: 'email',
   inputType: 'email',
-  inputValue: 'pochta@yandex.ru',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -50,7 +50,7 @@ const inputEmail = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'email');
@@ -64,7 +64,7 @@ const inputLogin = new ProfileInput('label', {
   labelText: 'Логин',
   inputName: 'login',
   inputType: 'text',
-  inputValue: 'ivanivanov',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -74,7 +74,7 @@ const inputLogin = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'login');
@@ -88,7 +88,7 @@ const inputFirstName = new ProfileInput('label', {
   labelText: 'Имя',
   inputName: 'first_name',
   inputType: 'text',
-  inputValue: 'Иван',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -98,10 +98,10 @@ const inputFirstName = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
-      const { message, isValid } = validate(target.value, 'name');
+      const { message, isValid } = validate(target.value, 'first_name');
 
       inputFirstName.setProps({ error: message, inputValue: target.value, isValid });
     },
@@ -112,7 +112,7 @@ const inputSecondName = new ProfileInput('label', {
   labelText: 'Фамилия',
   inputName: 'second_name',
   inputType: 'text',
-  inputValue: 'Иванов',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -122,10 +122,10 @@ const inputSecondName = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
-      const { message, isValid } = validate(target.value, 'name');
+      const { message, isValid } = validate(target.value, 'second_name');
 
       inputSecondName.setProps({ error: message, inputValue: target.value, isValid });
     },
@@ -136,7 +136,7 @@ const inputDisplayName = new ProfileInput('label', {
   labelText: 'Имя в чате',
   inputName: 'display_name',
   inputType: 'text',
-  inputValue: 'Иван',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -146,10 +146,10 @@ const inputDisplayName = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
-      const { message, isValid } = validate(target.value, 'displayName');
+      const { message, isValid } = validate(target.value, 'display_name');
 
       inputDisplayName.setProps({ error: message, inputValue: target.value, isValid });
     },
@@ -160,7 +160,7 @@ const inputPhone = new ProfileInput('label', {
   labelText: 'Телефон',
   inputName: 'phone',
   inputType: 'tel',
-  inputValue: '+79099673030',
+  inputValue: '',
   inputPlaceholder: '',
   inputDisabled: false,
   error: '',
@@ -170,40 +170,12 @@ const inputPhone = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'phone');
 
       inputPhone.setProps({ error: message, inputValue: target.value, isValid });
-    },
-  },
-});
-
-const button = new Button('button', {
-  'button-text': 'Сохранить',
-  attr: {
-    class: 'button',
-  },
-  events: {
-    click: (event) => {
-      event.preventDefault();
-      if (inputEmail._props.isValid
-            && inputLogin._props.isValid
-            && inputFirstName._props.isValid
-            && inputSecondName._props.isValid
-            && inputDisplayName._props.isValid
-            && inputPhone._props.isValid
-      ) {
-        console.log({
-          email: inputEmail._props.inputValue,
-          login: inputLogin._props.inputValue,
-          inputFirstName: inputFirstName._props.inputValue,
-          inputSecondName: inputSecondName._props.inputValue,
-          inputDisplayName: inputDisplayName._props.inputValue,
-          inputPhone: inputPhone._props.inputValue,
-        });
-      }
     },
   },
 });
@@ -221,6 +193,35 @@ const profileForm = new ProfileForm('form', {
 
   attr: {
     class: 'profile-form',
+  },
+});
+
+const button = new Button('button', {
+  'button-text': 'Сохранить',
+  attr: {
+    class: 'button',
+  },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+
+      if (inputEmail._props.isValid
+          && inputLogin._props.isValid
+          && inputFirstName._props.isValid
+          && inputSecondName._props.isValid
+          && inputDisplayName._props.isValid
+          && inputPhone._props.isValid
+      ) {
+        profileForm.sendNewUserData({
+          "first_name": inputFirstName._props.inputValue,
+          "second_name": inputSecondName._props.inputValue,
+          "display_name": inputDisplayName._props.inputValue,
+          "login": inputLogin._props.inputValue,
+          "email": inputEmail._props.inputValue,
+          "phone": inputPhone._props.inputValue
+        })
+      }
+    },
   },
 });
 

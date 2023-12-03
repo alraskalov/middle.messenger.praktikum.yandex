@@ -12,7 +12,6 @@ class UserController {
         try {
             await this.api.changeUserData(data);
             await authController.fetchUser();
-
             store.set('user.error', undefined);
             Router.go(Routes.Profile);
         } catch (error: unknown) {
@@ -23,7 +22,6 @@ class UserController {
 
     async changeUserAvatar(data: FormData) {
         try {
-            console.log(data);
             await this.api.changeUserAvatar(data);
             await authController.fetchUser();
             store.set('user.error', undefined);
@@ -39,6 +37,7 @@ class UserController {
             await this.api.changeUserPassword(password);
             await authController.fetchUser();
             store.set('user.error', undefined);
+            Router.go(Routes.Profile);
         } catch (error: unknown) {
             store.set('user.error', (error as Error).message);
             console.error((error as Error).message);

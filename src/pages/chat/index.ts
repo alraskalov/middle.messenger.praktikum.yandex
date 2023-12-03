@@ -11,6 +11,9 @@ import ChatInput from './components/chatInput';
 import validate from '../../utils/scripts/validate/validate';
 import Wrapper from "../../components/wrapper";
 import "./index.scss"
+import Link from "../../components/link";
+import Router from "../../utils/scripts/router/Router.ts";
+import Routes from "../../utils/scripts/router/Routes.ts";
 
 const inputMessage = new ChatInput('label', {
   inputName: 'message',
@@ -63,6 +66,16 @@ const chatSidebar = new ChatSidebar('aside', {
     attr: {
       class: 'search-input-wrapper',
     },
+  }),
+  button: new Link('div', {
+    'link-class': 'link_xs',
+    'link-text': 'Профиль',
+    'link-href': '',
+    events: {
+      click: () => {
+        Router.go(Routes.Profile)
+      }
+    }
   }),
   chatList: new ChatList('ul', {
     element: [

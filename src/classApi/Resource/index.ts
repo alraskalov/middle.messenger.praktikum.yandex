@@ -19,7 +19,7 @@ export class ResourceApi extends Api {
 
     public async read(path: Path) {
         try {
-            let response = await this.request.get(`/${path}`);
+            const response = await this.request.get(`/${path}`);
             return await response;
         } catch (e: unknown) {
             const {reason} = e as ValidError;

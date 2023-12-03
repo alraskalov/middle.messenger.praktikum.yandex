@@ -10,6 +10,7 @@ export default class HTTPTransport {
     constructor(endpoint: string) {
         this.endpoint = `${apiUrl}${endpoint}`;
     }
+
   get: HTTP = (url = "/", options = {}) => this.request(
     this.endpoint + url,
     { ...options, method: METHODS.GET },
@@ -36,14 +37,12 @@ export default class HTTPTransport {
 
   public request = (url: string, options: Options = {}, timeout = 5000) => {
     const { method, data, headers = {} } = options;
-
     return new Promise((resolve, reject) => {
       if (!method) {
         reject(new Error('No method'));
 
         return;
       }
-
       const xhr = new XMLHttpRequest();
       const isGet = method === METHODS.GET;
 
@@ -54,25 +53,39 @@ export default class HTTPTransport {
           : url,
       );
 
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
+        if (!(data instanceof FormData)) {
+            xhr.setRequestHeader('Content-Type', 'application/json');
+        }
 
-      xhr.onload = function load() {
-        resolve(xhr);
-      };
+        if (headers) {
+            Object.entries(headers).forEach(([header, value]) => {
+                xhr.setRequestHeader(header, value);
+            });
+        }
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+        xhr.onabort = reject;
+        xhr.onerror = reject;
+        xhr.timeout = timeout;
+        xhr.ontimeout = reject;
 
-      xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+        xhr.withCredentials = true;
+        xhr.responseType = 'json';
 
-      if (isGet || !data) {
-        xhr.send();
-      } else {
-        xhr.send(data);
-      }
+        xhr.onload = () => {
+            const { status, response } = xhr;
+
+            if (status >= 200 && status <= 300) {
+                resolve(response);
+            } else {
+                reject(response);
+            }
+        };
+
+        if (method === METHODS.GET || !data) {
+            xhr.send();
+        } else {
+            xhr.send((data instanceof FormData) ? data : JSON.stringify(data));
+        }
     });
   };
 }

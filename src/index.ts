@@ -8,6 +8,7 @@ import error404 from "./pages/error/modules/404";
 import editDataProfile from "./pages/profile/modules/editDataProfile";
 import editPasswordProfile from "./pages/profile/modules/editPasswordProfile";
 import error500 from "./pages/error/modules/500";
+import {authController} from "./controllerApi";
 
 document.addEventListener("DOMContentLoaded", async () => {
     Router
@@ -21,5 +22,41 @@ document.addEventListener("DOMContentLoaded", async () => {
         .use(Routes.Error_404, error404)
         .use(Routes.Error_500, error500)
 
-    Router.start()
+
+    let isProtectedRoute: boolean = true;
+
+    switch (window.location.pathname) {
+        case Routes.Error_404:
+            isProtectedRoute = false;
+            break;
+        case Routes.Login:
+            isProtectedRoute = false;
+            break;
+        case Routes.Signup:
+            isProtectedRoute = false;
+            break;
+        case Routes.Error_500:
+            isProtectedRoute = false;
+            break;
+        default:
+            isProtectedRoute = true;
+            break;
+    }
+
+    try {
+        await authController.fetchUser();
+        Router.start();
+
+        if (!isProtectedRoute) {
+            Router.go(Routes.Profile);
+        }
+    } catch (e) {
+        Router.start();
+
+        if (isProtectedRoute) {
+            Router.go(Routes.Root);
+        }
+    }
+
+
 })

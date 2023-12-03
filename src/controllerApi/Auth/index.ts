@@ -7,7 +7,7 @@ import Routes from "../../utils/scripts/router/Routes.ts";
 class AuthController {
     private api = new AuthApi();
 
-    async signUp(data: SignUp) {
+    signUp = async (data: SignUp) => {
         try {
             await this.api.signUp(data);
             await this.fetchUser();
@@ -19,7 +19,7 @@ class AuthController {
             store.set('user.error', (error as Error).message);
             console.error((error as Error).message);
         }
-    }
+    };
 
     async signIn(data: SignIn) {
         try {

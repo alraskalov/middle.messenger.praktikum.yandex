@@ -41,8 +41,8 @@ const inputOldPassword = new ProfileInput('label', {
   labelText: 'Старый пароль',
   inputName: 'oldPassword',
   inputType: 'password',
-  inputValue: '123123',
-  inputPlaceholder: '',
+  inputValue: '',
+  inputPlaceholder: '••••••••',
   error: '',
   isValid: false,
 
@@ -51,7 +51,7 @@ const inputOldPassword = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'password');
@@ -65,8 +65,8 @@ const inputNewPassword = new ProfileInput('label', {
   labelText: 'Новый пароль',
   inputName: 'newPassword',
   inputType: 'password',
-  inputValue: '123123',
-  inputPlaceholder: '',
+  inputValue: '',
+  inputPlaceholder: '••••••••',
   error: '',
   isValid: false,
 
@@ -75,7 +75,7 @@ const inputNewPassword = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'password');
@@ -85,12 +85,13 @@ const inputNewPassword = new ProfileInput('label', {
   },
 });
 
+
 const inputRepeatPassword = new ProfileInput('label', {
   labelText: 'Повторите новый пароль',
   inputName: 'repeatPassword',
   inputType: 'password',
-  inputValue: '123123',
-  inputPlaceholder: '',
+  inputValue: '',
+  inputPlaceholder: '••••••••',
   error: '',
   isValid: false,
 
@@ -99,7 +100,7 @@ const inputRepeatPassword = new ProfileInput('label', {
     class: 'profile-label',
   },
   events: {
-    change: (event) => {
+    change: (event: InputEvent) => {
       const target = event.target as HTMLInputElement;
 
       const { message, isValid } = validate(target.value, 'password');
@@ -108,6 +109,8 @@ const inputRepeatPassword = new ProfileInput('label', {
     },
   },
 });
+
+
 
 const profileForm = new ProfileForm('form', {
   'form-title': '',
@@ -133,11 +136,10 @@ const button = new Button('button', {
           && inputNewPassword._props.isValid
           && inputRepeatPassword._props.isValid
       ) {
-        console.log({
-          inputOldPassword: inputOldPassword._props.inputValue,
-          inputNewPassword: inputNewPassword._props.inputValue,
-          inputRepeatPassword: inputRepeatPassword._props.inputValue,
-        });
+        profileForm.sendNewUserPassword({
+            oldPassword: inputOldPassword._props.inputValue,
+            newPassword: inputNewPassword._props.inputValue,
+        })
       }
     },
   },

@@ -1,33 +1,32 @@
-import store from "./index.ts";
-import {Props} from "../Block/types.ts";
-import {StoreEvents} from "./types.ts";
 import isEqual from "../isEqual.ts";
+import store from "./index.ts";
+import {StoreEvents} from "./types.ts";
+import Block from "../Block/Block.ts";
 
-export default function connect(mapStateToProps: (state: unknown) => any) {
-    function HOC(Component: any) {
-        let currState: object = {};
-        class ConnectStore extends Component {
-            constructor(props: Props) {
+function connect<T extends Record<string, any>>(mapStateToProps: (state: T) => T): (Component: typeof Block<T>) => any {
+    return function HOC(Component: typeof Block<T>) {
+        let currentState: any = null;
+
+        return class WithStore extends Component {
+            constructor(tag: string, props: T) {
                 const state = store.getState();
-                currState = mapStateToProps(state);
+                currentState = mapStateToProps(state);
 
-                super({ ...props, ...currState });
+                super(tag, { ...props, ...currentState });
 
                 store.on(StoreEvents.Updated, () => {
                     const state = store.getState();
                     const propsFromState = mapStateToProps(state);
 
-                    if (isEqual(currState, propsFromState)) {
+                    if (isEqual(currentState, propsFromState)) {
                         return;
                     }
 
                     this.setProps({ ...propsFromState });
                 });
             }
-        }
-
-        return ConnectStore;
-    }
-
-    return HOC;
+        };
+    };
 }
+
+export default connect;

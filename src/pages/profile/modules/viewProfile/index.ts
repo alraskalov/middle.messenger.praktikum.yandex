@@ -10,6 +10,7 @@ import ListElement from '../../components/listElement';
 import Link from '../../../../components/link';
 import Router from "../../../../utils/scripts/router/Router.ts";
 import Routes from "../../../../utils/scripts/router/Routes.ts";
+import {authController} from "../../../../controllerApi";
 
 const avatar = new Avatar(
   'div',
@@ -77,8 +78,9 @@ const linkList = new LinkList('ul', {
         'link-text': 'Выйти',
         'link-href': '',
           events: {
-              click: () => {
-                  Router.go(Routes.Login)
+              click: (event: Event) => {
+                event.preventDefault()
+                authController.logOut();
               }
           }
       }),
@@ -99,7 +101,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Почта',
       inputName: 'email',
       inputType: 'email',
-      inputValue: 'pochta@yandex.ru',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -112,7 +114,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Логин',
       inputName: 'login',
       inputType: 'text',
-      inputValue: 'ivanivanov',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -125,7 +127,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Имя',
       inputName: 'first_name',
       inputType: 'text',
-      inputValue: 'Иван',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -138,7 +140,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Фамилия',
       inputName: 'second_name',
       inputType: 'text',
-      inputValue: 'Иванов',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -151,7 +153,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Имя в чате',
       inputName: 'display_name',
       inputType: 'text',
-      inputValue: 'Иван',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -164,7 +166,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Телефон',
       inputName: 'phone',
       inputType: 'tel',
-      inputValue: '+79099673030',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',

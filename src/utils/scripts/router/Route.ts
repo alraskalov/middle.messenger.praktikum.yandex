@@ -4,7 +4,6 @@ function isEqual(lhs: string, rhs: string) {
     return lhs === rhs;
 }
 function render(query: string, block: Block | null) {
-    console.log(query)
     const root = document.querySelector(query) as HTMLElement;
 
     if (root) {

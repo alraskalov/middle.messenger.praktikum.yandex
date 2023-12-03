@@ -1,11 +1,10 @@
 import Popup from '../../../../components/popup';
-import Form from '../../components/form';
+import FormWithStore from '../../components/form';
 import InputWrapper from '../../layouts/inputWrapper';
 import Input from '../../../../components/input';
 import ButtonsBlockWrapper from '../../layouts/buttonsBlockWrapper';
 import Button from '../../../../components/button';
 import Link from '../../../../components/link';
-// import renderDOM from '../../../../utils/scripts/renderDOM';
 import validate from '../../../../utils/scripts/validate/validate';
 import Wrapper from "../../../../components/wrapper";
 import Router from "../../../../utils/scripts/router/Router.ts";
@@ -70,7 +69,7 @@ const inputFirstName = new Input('label', {
     change: (event) => {
       const target = event.target as HTMLInputElement;
 
-      const { message, isValid } = validate(target.value, 'name');
+      const { message, isValid } = validate(target.value, 'first_name');
 
       inputFirstName.setProps({ error: message, inputValue: target.value, isValid });
     },
@@ -92,7 +91,7 @@ const inputSecondName = new Input('label', {
     change: (event) => {
       const target = event.target as HTMLInputElement;
 
-      const { message, isValid } = validate(target.value, 'name');
+      const { message, isValid } = validate(target.value, 'second_name');
 
       inputSecondName.setProps({ error: message, inputValue: target.value, isValid });
     },
@@ -165,79 +164,79 @@ const inputRepeatPassword = new Input('label', {
   },
 });
 
-const inputWrapper = new InputWrapper(
-  'div',
-  {
-    inputs: [
-      inputEmail,
-      inputLogin,
-      inputFirstName,
-      inputSecondName,
-      inputPhone,
-      inputPassword,
-      inputRepeatPassword,
+const form = new FormWithStore('form', {
+    formTitle: 'Регистрация',
+    wrapper: [new InputWrapper(
+        'div',
+        {
+            "inputs": [
+                inputEmail,
+                inputLogin,
+                inputFirstName,
+                inputSecondName,
+                inputPhone,
+                inputPassword,
+                inputRepeatPassword,
+            ],
+            "attr": {
+                "class": 'input-wrapper',
+            },
+        },
+    ),
+        new ButtonsBlockWrapper('div', {
+            buttons: [
+                new Button('button', {
+                    'button-text': 'Зарегистрироваться',
+                    "attr": {
+                        class: 'button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
+                            if (inputEmail._props.isValid
+                                && inputLogin._props.isValid
+                                && inputFirstName._props.isValid
+                                && inputSecondName._props.isValid
+                                && inputPhone._props.isValid
+                                && inputPassword._props.isValid
+                                && inputRepeatPassword._props.isValid
+                            ) {
+                                form.sendSignUp({
+                                    "first_name": inputFirstName._props.inputValue,
+                                    "second_name": inputSecondName._props.inputValue,
+                                    "login": inputLogin._props.inputValue,
+                                    "email": inputEmail._props.inputValue,
+                                    "password": inputPassword._props.inputValue,
+                                    "phone": inputPhone._props.inputValue
+                                })
+                            }
+                        },
+                    },
+                }),
+                new Link('div', {
+                    'link-class': 'link_xs',
+                    'link-text': 'Войти',
+                    'link-href': '',
+                    events: {
+                        click: () => {
+                            Router.go(Routes.Login)
+                        }
+                    }
+                }),
+            ],
+            attr: {
+                class: 'buttons-block-wrapper',
+            },
+        })
     ],
     attr: {
-      class: 'input-wrapper',
+        class: 'auth-form auth-form_signup',
     },
-  },
-);
-
-const buttonsWrapper = new ButtonsBlockWrapper('div', {
-  buttons: [
-    new Button('button', {
-      'button-text': 'Зарегистрироваться',
-      attr: {
-        class: 'button',
-      },
-      events: {
-        click: (e) => {
-          e.preventDefault();
-          if (inputEmail._props.isValid
-            && inputLogin._props.isValid
-            && inputFirstName._props.isValid
-            && inputSecondName._props.isValid
-            && inputPhone._props.isValid
-            && inputPassword._props.isValid
-            && inputRepeatPassword._props.isValid
-          ) {
-            console.log({
-              mail: inputEmail._props.inputValue,
-              login: inputLogin._props.inputValue,
-              firstName: inputFirstName._props.inputValue,
-              secondName: inputSecondName._props.inputValue,
-              phone: inputPhone._props.inputValue,
-              password: inputPassword._props.inputValue,
-              repeatPassword: inputRepeatPassword._props.inputValue,
-            });
-          }
-        },
-      },
-    }),
-    new Link('div', {
-      'link-class': 'link_xs',
-      'link-text': 'Войти',
-      'link-href': '',
-        events: {
-            click: () => {
-                Router.go(Routes.Login)
-            }
-        }
-    }),
-  ],
-  attr: {
-    class: 'buttons-block-wrapper',
-  },
-});
+})
 
 const popup = new Popup('div', {
-  element: new Form('form', {
-    formTitle: 'Регистрация',
-    wrapper: [inputWrapper, buttonsWrapper],
-    attr: {
-      class: 'auth-form auth-form_signup',
-    },
-  }),
+  element: form,
   attr: {
     class: 'popup',
   },
