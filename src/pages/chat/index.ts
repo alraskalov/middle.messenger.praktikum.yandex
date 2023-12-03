@@ -88,12 +88,25 @@ const form = new Form('form', {
   formTitle: 'Введите название чата',
   wrapper: [
     new ButtonsBlockWrapper('div', {
-      buttons: [inputCreateChat, buttonCreateChat],
+      buttons: [inputCreateChat, buttonCreateChat,
+          new Button('button', {
+          'button-text': 'Закрыть окно',
+          "attr": {
+              class: 'button',
+          },
+          "events": {
+              click: (e) => {
+                  e.preventDefault();
+
+                  dropdown.hide()
+              },
+          },
+      }),],
 
       attr: {
         class: 'buttons-block-wrapper',
       },
-    })
+    }),
   ],
   attr: {
     class: 'dropdown-form',

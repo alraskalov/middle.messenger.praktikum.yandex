@@ -73,6 +73,19 @@ class WrapperChat extends Block {
                         },
                     },
                 }),
+                new Button('button', {
+                    'button-text': 'Закрыть окно',
+                    "attr": {
+                        class: 'button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
+                            dropdown.hide()
+                        },
+                    },
+                }),
             ],
 
             attr: {
@@ -81,7 +94,7 @@ class WrapperChat extends Block {
         })
 
         const form = new Form('form', {
-            formTitle: 'Введите имя пользователя',
+            formTitle: 'Введите id пользователя',
             wrapper: [
                 new ButtonsBlockWrapper('div', {
                     buttons: [inputDeleteUser, buttonDeleteUser],
@@ -155,6 +168,19 @@ class WrapperChat extends Block {
                         },
                     },
                 }),
+                new Button('button', {
+                    'button-text': 'Закрыть окно',
+                    "attr": {
+                        class: 'button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
+                            dropdown.hide()
+                        },
+                    },
+                }),
             ],
 
             attr: {
@@ -163,7 +189,7 @@ class WrapperChat extends Block {
         })
 
         const form = new Form('form', {
-            formTitle: 'Введите имя пользователя',
+            formTitle: 'Введите id пользователя',
             wrapper: [
                 new ButtonsBlockWrapper('div', {
                     buttons: [inputAddUser, buttonAddUser],

@@ -46,6 +46,19 @@ const form = new Form('form', {
                 },
               },
             }),
+              new Button('button', {
+                  'button-text': 'Закрыть окно',
+                  "attr": {
+                      class: 'button',
+                  },
+                  "events": {
+                      click: (e) => {
+                          e.preventDefault();
+
+                          dropdown.hide()
+                      },
+                  },
+              }),
           ],
 
           attr: {
