@@ -29,7 +29,7 @@ const block = new TestBlock('div', {
         class: "test-class-mocha",
     }
 });
-console.log(block._element.innerHTML)
+
 describe('Block', () => {
     it('render', () => {
         assert.equal(block._element.tagName, 'DIV');
