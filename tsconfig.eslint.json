@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
-    "types": ["@types/node"],
+    "types": ["@types/node", "mocha", "node"],
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+    "module": "ESNext"
   },
   "extends": "./tsconfig.json",
   "include": [
     "src/**/*.ts",
+    "src/**/*.spec.ts",
     "src/**/*.js",
     ".eslintrc.cjs",
     "vite.config.ts"
-  ]
+  ],
+  "exclude": ["./mochaSetup.js"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
 }
