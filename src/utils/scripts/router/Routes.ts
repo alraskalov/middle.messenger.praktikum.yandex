@@ -5,9 +5,9 @@ enum Routes {
     Profile = "/settings",
     EditProfilePassword = "/settings/edit-password",
     EditDataProfile = "/settings/edit-data",
-    Chat = "/chat",
+    Chat = "/messenger",
     Error_404 = "/404",
-    Error_500 = "/messenger",
+    Error_500 = "/505",
 }
 
 export default Routes;
