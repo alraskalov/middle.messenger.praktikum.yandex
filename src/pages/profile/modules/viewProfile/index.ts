@@ -4,18 +4,110 @@ import BackButton from '../../../../components/backButton';
 import BackSidebar from '../../components/backSidebar';
 import ProfileForm from '../../components/profileForm';
 import ProfileInput from '../../components/profileInput';
-import renderDOM from '../../../../utils/scripts/renderDOM';
 import LinkList from '../../components/linkList';
 import ListElement from '../../components/listElement';
-import Link from '../../../../components/link';
+import Router from "../../../../utils/scripts/router/Router.ts";
+import Routes from "../../../../utils/scripts/router/Routes.ts";
+import {authController} from "../../../../controllerApi";
+import Form from "../../../../components/form";
+import ButtonsBlockWrapper from "../../../auth/layouts/buttonsBlockWrapper";
+import DropdownForm from "../../../../components/dropdownForm";
+import Popup from "../../../../components/popup";
+import Button from "../../../../components/button";
+
+const form = new Form('form', {
+  formTitle: 'Загрузить изображение',
+  wrapper: [
+    new ButtonsBlockWrapper('div', {
+      buttons: [new ProfileInput('label', {
+        labelText: '',
+        inputName: 'avatar',
+        inputType: 'file',
+        inputValue: '',
+        inputDisabled: false,
+        isValid: true,
+        attr: {
+          class: 'profile-label',
+        },
+      }),
+        new ButtonsBlockWrapper('div', {
+          buttons: [
+            new Button('button', {
+              'button-text': 'Загрузить аватар',
+              "attr": {
+                class: 'button',
+              },
+              "events": {
+                click: (e) => {
+                  e.preventDefault();
+                  sidebarLayout.sendFile("dropdown-form")
+
+                  dropdown.hide()
+                },
+              },
+            }),
+              new Button('button', {
+                  'button-text': 'Закрыть окно',
+                  "attr": {
+                      class: 'button',
+                  },
+                  "events": {
+                      click: (e) => {
+                          e.preventDefault();
+
+                          dropdown.hide()
+                      },
+                  },
+              }),
+          ],
+
+          attr: {
+            class: 'buttons-block-wrapper',
+          },
+        })
+      ],
+
+      attr: {
+        class: 'buttons-block-wrapper',
+      },
+    })
+  ],
+  attr: {
+    class: 'dropdown-form',
+    name: "dropdown-form",
+  },
+})
+
+const dropDownWrapper = new Popup("div", {
+  element: form,
+  attr: {
+    class: 'popup',
+  },
+})
+
+const dropdown = new DropdownForm("div", {
+  isVisible: false,
+  element: dropDownWrapper,
+  attr: {
+    class: "dropdown"
+  }
+})
+dropdown.hide()
+
 
 const avatar = new Avatar(
   'div',
   {
-    src: '/assets/icons/avatar.svg',
+    src: ``,
     attr: {
       class: 'avatar-wrapper avatar-wrapper_edit',
     },
+    events: {
+      click: () => {
+
+        dropdown.show()
+      }
+    }
   },
 );
 
@@ -23,6 +115,11 @@ const backButton = new BackButton('button', {
   attr: {
     class: 'back-button',
   },
+    events: {
+        click: () => {
+            Router.go(Routes.Chat)
+        }
+    }
 });
 
 const backSidebar = new BackSidebar('aside', {
@@ -35,31 +132,59 @@ const backSidebar = new BackSidebar('aside', {
 const linkList = new LinkList('ul', {
   element: [
     new ListElement('li', {
-      element: new Link('div', {
-        'link-class': 'link_regular',
-        'link-text': 'Изменить данные',
-        'link-href': '/src/pages/profile/modules/editDataProfile/index.html',
+      element: new Button('button', {
+        'button-text': 'Изменить данные',
+        "attr": {
+          class: 'link link_regular link_button',
+        },
+        "events": {
+          click: (e) => {
+            e.preventDefault();
+
+            Router.go(Routes.EditDataProfile)
+
+          },
+        },
       }),
       attr: {
         class: 'list-element',
       },
     }),
     new ListElement('li', {
-      element: new Link('div', {
-        'link-class': 'link_regular',
-        'link-text': 'Изменить пароль',
-        'link-href': '/src/pages/profile/modules/editPasswordProfile/index.html',
-      }),
+      element:
+          new Button('button', {
+            'button-text': 'Изменить пароль',
+            "attr": {
+              class: 'link link_regular link_button',
+            },
+            "events": {
+              click: (e) => {
+                e.preventDefault();
+
+                Router.go(Routes.EditProfilePassword)
+
+              },
+            },
+          }),
       attr: {
         class: 'list-element',
       },
     }),
     new ListElement('li', {
-      element: new Link('div', {
-        'link-class': 'link_regular link_red',
-        'link-text': 'Выйти',
-        'link-href': '/src/pages/auth/modules/login/index.html',
-      }),
+      element:
+          new Button('button', {
+            'button-text': 'Выйти',
+            "attr": {
+              class: 'link link_regular link_red link_button',
+            },
+            "events": {
+              click: (e) => {
+                e.preventDefault();
+
+                authController.logOut();
+              },
+            },
+          }),
       attr: {
         class: 'list-element',
       },
@@ -71,13 +196,12 @@ const linkList = new LinkList('ul', {
 });
 
 const profileForm = new ProfileForm('form', {
-  'form-title': 'Иван',
   inputs: [
     new ProfileInput('label', {
       labelText: 'Почта',
       inputName: 'email',
       inputType: 'email',
-      inputValue: 'pochta@yandex.ru',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -90,7 +214,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Логин',
       inputName: 'login',
       inputType: 'text',
-      inputValue: 'ivanivanov',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -103,7 +227,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Имя',
       inputName: 'first_name',
       inputType: 'text',
-      inputValue: 'Иван',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -116,7 +240,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Фамилия',
       inputName: 'second_name',
       inputType: 'text',
-      inputValue: 'Иванов',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -129,7 +253,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Имя в чате',
       inputName: 'display_name',
       inputType: 'text',
-      inputValue: 'Иван',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -142,7 +266,7 @@ const profileForm = new ProfileForm('form', {
       labelText: 'Телефон',
       inputName: 'phone',
       inputType: 'tel',
-      inputValue: '+79099673030',
+      inputValue: '',
       inputPlaceholder: '',
       inputDisabled: true,
       error: '',
@@ -159,11 +283,14 @@ const profileForm = new ProfileForm('form', {
 
 const sidebarLayout = new LayoutSidebar('div', {
   sidebar: backSidebar,
-  content: [avatar, profileForm, linkList],
+  avatar: avatar,
+  form: profileForm,
+  dropdown: dropdown,
+  buttons: linkList,
   'content-class': 'content_height_576',
   attr: {
     class: 'container container_column',
   },
 });
 
-renderDOM('body', sidebarLayout);
+export default sidebarLayout;

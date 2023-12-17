@@ -1,12 +1,13 @@
 import Popup from '../../../../components/popup';
-import Form from '../../components/form';
 import InputWrapper from '../../layouts/inputWrapper';
 import Input from '../../../../components/input';
 import ButtonsBlockWrapper from '../../layouts/buttonsBlockWrapper';
 import Button from '../../../../components/button';
-import Link from '../../../../components/link';
-import renderDOM from '../../../../utils/scripts/renderDOM';
 import validate from '../../../../utils/scripts/validate/validate';
+import Wrapper from "../../../../components/wrapper";
+import Router from "../../../../utils/scripts/router/Router.ts";
+import Routes from "../../../../utils/scripts/router/Routes.ts";
+import Form from "../../../../components/form";
 
 const inputLogin = new Input('label', {
   inputName: 'login',
@@ -52,62 +53,85 @@ const inputPassword = new Input('label', {
   },
 });
 
-const inputWrapper = new InputWrapper(
-  'div',
-  {
-    inputs: [
-      inputLogin,
-      inputPassword,
-    ],
-    attr: {
-      class: 'input-wrapper',
-    },
-  },
-);
 
-const buttonsWrapper = new ButtonsBlockWrapper('buttons-block-wrapper', {
-  buttons: [
-    new Button('button', {
-      'button-text': 'Авторизоваться',
-      attr: {
-        class: 'button',
-      },
-      events: {
-        click: (e) => {
-          e.preventDefault();
-          if (inputLogin._props.inputValue
-                && inputPassword._props.inputValue
-          ) {
-            console.log({
-              login: inputLogin._props.inputValue,
-              password: inputPassword._props.inputValue,
-            });
-          }
+
+const form = new Form('form', {
+    "formTitle": 'Вход',
+    "wrapper": [new InputWrapper(
+        'div',
+        {
+            "inputs": [
+                inputLogin,
+                inputPassword,
+            ],
+            "attr": {
+                "class": 'input-wrapper',
+            },
         },
-      },
-    }),
-    new Link('div', {
-      'link-class': 'link_xs',
-      'link-text': 'Нет аккаунта?',
-      'link-href': '/pages/auth/modules/signup/index.html',
-    }),
-  ],
-  attr: {
-    class: 'buttons-block-wrapper',
-  },
+    ),
+        new ButtonsBlockWrapper('div', {
+            buttons: [
+                new Button('button', {
+                    'button-text': 'Авторизоваться',
+                    attr: {
+                        class: 'button',
+                    },
+                    events: {
+                        click: (e) => {
+                            e.preventDefault();
+                            if (inputLogin._props.isValid
+                                && inputPassword._props.isValid
+                            ) {
+                                form.sendLogIn({
+                                    "login": inputLogin._props.inputValue,
+                                    "password": inputPassword._props.inputValue
+                                })
+                            }
+                        },
+                    },
+                }),
+                new Button('button', {
+                    'button-text': 'Нет аккаунта?',
+                    "attr": {
+                        class: 'link link_regular link_button',
+                    },
+                    "events": {
+                        click: (e) => {
+                            e.preventDefault();
+
+                            Router.go(Routes.Signup)
+                        },
+                    },
+                }),
+            ],
+            attr: {
+                class: 'buttons-block-wrapper',
+            },
+        })],
+    attr: {
+        class: 'auth-form auth-form_login',
+    },
 });
 
-const popup = new Popup('popup', {
-  element: new Form('form', {
-    formTitle: 'Вход',
-    wrapper: [inputWrapper, buttonsWrapper],
-    attr: {
-      class: 'auth-form auth-form_login',
-    },
-  }),
+const popup = new Popup('div', {
+  element: form,
   attr: {
     class: 'popup',
   },
 });
 
-renderDOM('.container', popup);
+const container = new Wrapper("div", {
+    element: [popup],
+    attr: {
+        class: "container container_column container_center",
+    }
+})
+
+const main = new Wrapper("main", {
+    element: [container],
+    attr: {},
+})
+
+export default main;
+
+// renderDOM('.container', popup);

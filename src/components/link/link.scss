@@ -3,10 +3,17 @@
 .link {
   color: $blue-color-1;
   text-decoration: none;
-
+  cursor: pointer;
 
   &_xs {
     @include text2-link;
+  }
+
+  &_button {
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    padding: 0;
   }
 
   &_regular {

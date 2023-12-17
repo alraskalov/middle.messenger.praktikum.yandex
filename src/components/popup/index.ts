@@ -3,7 +3,7 @@ import template from './popup.template';
 import Block from '../../utils/scripts/Block/Block';
 
 interface IProps {
-  element: Block;
+  element: any;
   attr?: {
     [key: string]: unknown;
   }

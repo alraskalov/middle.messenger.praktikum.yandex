@@ -7,6 +7,9 @@ interface IProps {
   attr?: {
     [key: string]: unknown;
   }
+  events?: {
+    [key: string]: (event: InputEvent) => void
+  }
 }
 export default class Avatar extends Block {
   constructor(tag: string = 'div', _props: IProps) {

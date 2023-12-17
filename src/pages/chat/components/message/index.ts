@@ -1,15 +1,14 @@
-import './form.scss';
-import template from './form.template';
 import Block from '../../../../utils/scripts/Block/Block';
+import './message.scss';
+import template from './message.template.ts';
 
 interface IProps {
-  formTitle: string;
-  wrapper: Array<Block>;
+  value: string[]
   attr?: {
     [key: string]: unknown;
   }
 }
-export default class Form extends Block {
+export default class Message extends Block {
   constructor(tag: string = 'div', _props: IProps) {
     super(tag, _props);
   }

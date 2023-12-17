@@ -9,7 +9,10 @@ const template = `
 
         <div class="chat-list-element__info">
             <p class="chat-list-element__date">{{ messageDate }}</p>
-            <div class="chat-list-element__message-count">{{ messageCount }}</div>
+            {{#if messageCount}}
+                <div class="chat-list-element__message-count">{{ messageCount }}</div>
+            {{/if}}
+            
         </div>
     </div>
 `;

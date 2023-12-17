@@ -6,6 +6,12 @@ body {
   font-family: Inter, Verdana, Geneva, sans-serif;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 .container {
   display: flex;
   align-items: center;

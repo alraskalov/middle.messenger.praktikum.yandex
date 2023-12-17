@@ -3,7 +3,10 @@ const template = `
     {{{ sidebar }}}
     <main class="main">
         <section class="content {{ content-class }}">
-            {{{ content }}}
+            {{{ avatar }}}
+            {{{ form }}}
+            {{{ buttons }}}
+            {{{ dropdown }}}
         </section>
     </main>
 </div>
