@@ -31,6 +31,6 @@ module.exports = {
     "rules": {
         "@typescript-eslint/no-explicit-any": "off",
         "no-prototype-builtins": "off",
-        // "@typescript-eslint/no-this-alias": "off",
+        "@typescript-eslint/no-this-alias": "off",
     }
 }
