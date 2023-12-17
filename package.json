@@ -19,9 +19,8 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{js,ts}": "eslint --fix",
-    "./src/**/*.ts": "tsc --noEmit --pretty",
-    "./src/**/*.{css,scss}": "stylelint --fix"
+    ".*.{js,ts}": "eslint --fix",
+    "*.{css,scss}": "stylelint --fix"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
