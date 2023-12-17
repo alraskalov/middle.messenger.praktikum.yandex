@@ -1,6 +1,7 @@
 import {describe, it} from 'mocha';
 import {assert} from 'chai';
 import Block from './Block'
+import randomString from "./utils.ts";
 
 const template = ``;
 
@@ -39,7 +40,8 @@ describe('Block', () => {
     });
 
     it('setProps', () => {
-        block.setProps({_id: 'test'})
-        assert.deepEqual(block._props, {_id: 'test', attr: {class: 'test-class-mocha'}});
+        const id = randomString()
+        block.setProps({_id: id})
+        assert.deepEqual(block._props, {_id: id, attr: {class: 'test-class-mocha'}});
     });
 });
