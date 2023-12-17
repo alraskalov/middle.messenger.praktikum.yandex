@@ -11,11 +11,13 @@
     "dev": "vite",
     "start": "tsc --noEmit && vite build && vite preview",
     "build": "tsc --noEmit && vite build",
-    "style": "npx stylelint ./src/**/*.scss --fix"
+    "style": "npx stylelint ./src/**/*.scss --fix",
+    "test": "TS_NODE_PROJECT=\"tsconfig.eslint.json\" mocha"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "chai": "^4.3.10",
@@ -25,10 +27,13 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-promise": "^6.1.1",
+    "jsdom": "^23.0.1",
     "mocha": "^10.2.0",
     "sass": "^1.69.4",
+    "sinon": "^17.0.1",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
