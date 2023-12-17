@@ -7,11 +7,9 @@
     "node": ">=14.18.0 || >=16.0.0"
   },
   "scripts": {
-    "eslint": "npx eslint ./src --fix  --ext .js,.jsx,.ts,.tsx",
     "dev": "vite",
     "start": "tsc --noEmit && vite build && vite preview",
     "build": "tsc --noEmit && vite build",
-    "style": "npx stylelint ./src/**/*.scss --fix",
     "test": "npx lint-staged && mocha",
     "prepare": "husky install"
   },
