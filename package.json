@@ -14,14 +14,18 @@
     "style": "npx stylelint ./src/**/*.scss --fix"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "chai": "^4.3.10",
     "eslint": "^8.53.0",
     "eslint-config-standard-with-typescript": "^39.1.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-promise": "^6.1.1",
+    "mocha": "^10.2.0",
     "sass": "^1.69.4",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.1.0",
