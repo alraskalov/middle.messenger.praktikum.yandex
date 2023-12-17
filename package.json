@@ -12,7 +12,17 @@
     "start": "tsc --noEmit && vite build && vite preview",
     "build": "tsc --noEmit && vite build",
     "style": "npx stylelint ./src/**/*.scss --fix",
-    "test": "TS_NODE_PROJECT=\"tsconfig.eslint.json\" mocha"
+    "test": "npx lint-staged && mocha",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix",
+    "*.{css,scss}": "stylelint --fix"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -27,7 +37,9 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.0",
     "jsdom": "^23.0.1",
+    "lint-staged": "^15.2.0",
     "mocha": "^10.2.0",
     "sass": "^1.69.4",
     "sinon": "^17.0.1",
