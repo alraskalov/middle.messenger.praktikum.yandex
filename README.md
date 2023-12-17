@@ -24,9 +24,15 @@
 - Страница `404`.
 - Страница `5**`.
 
-## 🧥 Описание логики работы экранов
+## 🧥 Функционал
 
-*In Progress...*
+ - Регистрация
+ - Авторизация
+ - Изменение данных пользователя
+ - Создание чатов
+ - Добавление пользователей в чат
+ - Удаление пользователей из чата
+ - Отправка сообщений в чат 
 
 ## Макет
 
@@ -34,14 +40,14 @@
 
 ## Список экранов
 
-- **[Log In](https://snazzy-concha-c6cf54.netlify.app/pages/auth/modules/login/)**
-- **[Sign up](https://snazzy-concha-c6cf54.netlify.app/pages/auth/modules/signup/)**
-- **[View Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/viewprofile/)**
-- **[Edit Data Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/editdataprofile/)**
-- **[Edit Password Profile](https://snazzy-concha-c6cf54.netlify.app/pages/profile/modules/editpasswordprofile/)**
-- **[Error 404](https://snazzy-concha-c6cf54.netlify.app/pages/error/modules/404/)**
-- **[Error 500](https://snazzy-concha-c6cf54.netlify.app/pages/error/modules/500/)**
-- **[Chat](https://snazzy-concha-c6cf54.netlify.app/pages/chat/)**
+- **[Log In](https://snazzy-concha-c6cf54.netlify.app/)**
+- **[Sign up](https://snazzy-concha-c6cf54.netlify.app/sign-up/)**
+- **[View Profile](https://snazzy-concha-c6cf54.netlify.app/settings/)**
+- **[Edit Data Profile](https://snazzy-concha-c6cf54.netlify.app/settings/edit-data/)**
+- **[Edit Password Profile](https://snazzy-concha-c6cf54.netlify.app/settings/edit-password/)**
+- **[Error 404](https://snazzy-concha-c6cf54.netlify.app/404/)**
+- **[Error 500](https://snazzy-concha-c6cf54.netlify.app/500/)**
+- **[Chat](https://snazzy-concha-c6cf54.netlify.app/messenger/)**
 
 ## 👨🏻‍💻 Развертывание проекта:
 
@@ -50,5 +56,4 @@
 - `npm run dev` - сборка и запуск проекта в режиме разработки
 - `npm run start` - сборка и запуск стабильной версии проекта
 - `npm run dev` - сборка стабильной версии проекта
-- `npm run eslint` - ESlint
-- `npm run style` - Stylelint
+- `npm run test` - ESlint + TSC + Stylelint
