@@ -76,7 +76,7 @@ export default class Block<Props extends Record<string, any> = any> {
     const block = this.render();
     this.removeEvents();
     this._element.innerHTML = '';
-    this._element.appendChild(block as unknown as Node);
+    this._element.appendChild(block as unknown as HTMLDivElement);
     this.addEvents();
     this.addAttribute();
   }
